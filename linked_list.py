@@ -1,85 +1,89 @@
 # -*- conding: utf-8 -*-
-"""Doctstring."""
+"""TODO: Docstring."""
+
 
 class Node(object):
-    """Doctstring."""
+    """TODO: Docstring."""
 
     def __init__(self, data=None, next_node=None):
+        """TODO: Docstring."""
         self.data = data
         self.next_node = next_node
 
-
     def set_next(self, next):
+        """TODO: Docstring."""
         self.next_node = next
 
-
     def get_data(self):
+        """TODO: Docstring."""
         return self.data
 
-
     def get_next(self):
+        """TODO: Docstring."""
         return self.next_node
 
-
     def set_data(self, data):
+        """TODO: Docstring."""
         self.data = data
 
 
 class Linked_List(object):
+    """TODO: Docstring."""
+
     def __init__(self, head=None, length=0):
+        """TODO: Docstring."""
         self.head = head
         self.length = length
 
-
     def insert(self, data):
-        self.length += 1    
-        new_node = Node(data)
-        new_node.set_next(self.head)
-        self.head = new_node
-
+        """TODO: Docstring."""
+        self.head = Node(data, self.head)
+        self.length += 1
 
     def pop(self):
+        """TODO: Docstring."""
         old_head = self.head
-        self.head = old_head.get_next()
+        self.head = old_head.next_node
+        self.length = self.length - 1
         return old_head
 
     def size(self):
+        """TODO: Docstring."""
         return self.length
 
     def search(self, data):
+        """TODO: Docstring."""
         node = self.head
-        for i in range(self.size()):
-            if node.get_data() == data:
-                return node.get_data()
+        for i in range(self.length):
+            if node.data == data:
+                return node.data
             else:
-                node = node.get_next()
+                node = node.next_node
 
     def remove(self, data):
+        """TODO: Docstring."""
         node = self.head
         node_prev = None
-        for i in range(self.size()):
-            if node.get_data() == data:
+        for i in range(self.length):
+            if node.data == data:
                 if node_prev:
-                    node_prev.set_next(node)
-                    self.length = self.length - 1
-
+                    node_prev.next_node = node
                 else:
-                   self.pop()
+                    self.head = self.head.next_node
+                self.length = self.length - 1
                 break
             else:
                 node_prev = node
-                node = node.get_next()
+                node = node.next_node
 
     def display(self):
+        """TODO: Docstring."""
         add_to = ")"
         node = self.head
-        for i in range(self.size()):
-            add_to = str(node.get_data()) + add_to
-            if node.get_next():
+        for i in range(self.length):
+            add_to = str(node.data) + add_to
+            if node.next_node:
                 add_to = ', ' + add_to
-            node = node.get_next()
+            node = node.next_node
         add_to = '(' + add_to
         return add_to
-            
-
-
