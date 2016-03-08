@@ -42,10 +42,10 @@ class Linked_List(object):
 
     def pop(self):
         """TODO: Docstring."""
-        old_head = self.head
-        self.head = old_head.next_node
+        head = self.head
+        self.head = head.next_node
         self.length = self.length - 1
-        return old_head
+        return head
 
     def size(self):
         """TODO: Docstring."""
