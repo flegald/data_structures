@@ -1,5 +1,5 @@
 # -*- conding: utf-8 -*-
-"""Doctstring."""
+"""TODO: Docstring."""
 data = "123"
 
 
@@ -14,6 +14,7 @@ def test_set_next():
     test_node2 = Node(456)
     test_node1.set_next(test_node2)
     assert test_node1.next_node == test_node2
+
 
 def test_get_data():
     from linked_list import Node
@@ -59,7 +60,6 @@ def test_pop():
 
 def test_length():
     from linked_list import Linked_List
-    from linked_list import Node
     test_list = Linked_List()
     test_list.insert(123)
     test_list.insert(456)
@@ -68,7 +68,6 @@ def test_length():
 
 def test_search():
     from linked_list import Linked_List
-    from linked_list import Node
     test_list = Linked_List()
     test_list.insert(123)
     test_list.insert(456)
@@ -77,22 +76,18 @@ def test_search():
 
 def test_remove():
     from linked_list import Linked_List
-    from linked_list import Node
     test_list = Linked_List()
     test_list.insert(123)
     test_list.insert(456)
     test_list.insert(789)
     test_list.insert(111)
     test_list.insert(222)
-    print test_list.size()
     test_list.remove(456)
-    print test_list.size()
     assert test_list.size() == 4
 
 
 def test_display():
     from linked_list import Linked_List
-    from linked_list import Node
     test_list = Linked_List()
     test_list.insert(123)
     test_list.insert(456)
