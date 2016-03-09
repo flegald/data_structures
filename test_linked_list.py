@@ -1,9 +1,9 @@
 # -*- conding: utf-8 -*-
-"""TODO: Docstring."""
+"""Test file for linked_list data structure."""
 data = ['123', '456', '789']
 
 
-def test_Node():
+def test_node():
     """Test node module init method."""
     from linked_list import Node
     assert isinstance(Node(data[0]), Node)
@@ -42,20 +42,23 @@ def test_get_next():
     assert test_node1.get_next() == test_node2
 
 
-def test_Linked_List():
+def test_linked_list():
+    """Test Linked_List constructor method."""
     from linked_list import Linked_List
     assert isinstance(Linked_List(), Linked_List)
 
 
 def test_insert():
+    """Test Linked_List insert method."""
     from linked_list import Linked_List
     from linked_list import Node
     test_list = Linked_List()
-    test_insert = test_list.insert(data[0])
+    test_list.insert(data[0])
     assert isinstance(test_list.head, Node)
 
 
 def test_pop():
+    """Test Linked_List pop method."""
     from linked_list import Linked_List
     test_list = Linked_List()
     test_list.insert(data[0])
@@ -63,6 +66,7 @@ def test_pop():
 
 
 def test_length():
+    """Test Linked_List length method."""
     from linked_list import Linked_List
     test_list = Linked_List()
     test_list.insert(data[0])
@@ -71,6 +75,7 @@ def test_length():
 
 
 def test_search():
+    """Test Linked_List length method."""
     from linked_list import Linked_List
     test_list = Linked_List()
     test_list.insert(data[0])
@@ -79,6 +84,7 @@ def test_search():
 
 
 def test_remove():
+    """Test Linked_List remove method."""
     from linked_list import Linked_List
     test_list = Linked_List()
     test_list.insert(data[0])
@@ -89,6 +95,7 @@ def test_remove():
 
 
 def test_display():
+    """Test Linked_List display method."""
     from linked_list import Linked_List
     test_list = Linked_List()
     test_list.insert(data[0])
