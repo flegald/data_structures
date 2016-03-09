@@ -1,58 +1,58 @@
 # -*- conding: utf-8 -*-
-"""TODO: Docstring."""
+"""Create a linked list from scratch."""
 
 
 class Node(object):
-    """TODO: Docstring."""
+    """Node object to store data and pointer to next node within list."""
 
     def __init__(self, data=None, next_node=None):
-        """TODO: Docstring."""
+        """Node constructor method."""
         self.data = data
         self.next_node = next_node
 
-    def set_next(self, next):
-        """TODO: Docstring."""
-        self.next_node = next
+    def set_data(self, data):
+        """Method designed to set data of current node."""
+        self.data = data
 
     def get_data(self):
-        """TODO: Docstring."""
+        """Method designed to return data of current node."""
         return self.data
 
-    def get_next(self):
-        """TODO: Docstring."""
-        return self.next_node
+    def set_next(self, next):
+        """Method designed to set next node of current node."""
+        self.next_node = next
 
-    def set_data(self, data):
-        """TODO: Docstring."""
-        self.data = data
+    def get_next(self):
+        """Method designed to return next node of current node."""
+        return self.next_node
 
 
 class Linked_List(object):
-    """TODO: Docstring."""
+    """Linked list object to store a list of nodes."""
 
     def __init__(self, head=None, length=0):
-        """TODO: Docstring."""
+        """Linked list constructor."""
         self.head = head
         self.length = length
 
     def insert(self, data):
-        """TODO: Docstring."""
+        """Add a new node to the head of the linked list."""
         self.head = Node(data, self.head)
         self.length += 1
 
     def pop(self):
-        """TODO: Docstring."""
+        """Remove and return the head of the linked list."""
         head = self.head
         self.head = head.next_node
         self.length = self.length - 1
         return head
 
     def size(self):
-        """TODO: Docstring."""
+        """Return the length of the linked list."""
         return self.length
 
     def search(self, data):
-        """TODO: Docstring."""
+        """Search for data and return the containing node."""
         node = self.head
         for i in range(self.length):
             if node.data == data:
@@ -61,7 +61,7 @@ class Linked_List(object):
                 node = node.next_node
 
     def remove(self, data):
-        """TODO: Docstring."""
+        """Remove specific node and patch link from prev to next."""
         node = self.head
         node_prev = None
         for i in range(self.length):
@@ -77,7 +77,7 @@ class Linked_List(object):
                 node = node.next_node
 
     def display(self):
-        """TODO: Docstring."""
+        """Display contents of list."""
         add_to = ")"
         node = self.head
         for i in range(self.length):
