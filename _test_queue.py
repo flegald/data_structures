@@ -3,14 +3,15 @@
 
 data = [1, 2, 3, 4]
 
+
 def test_queue():
-    """test instantiate queue"""
+    """Test instantiate queue."""
     from Queue import Queue
     assert isinstance(Queue(), Queue)
 
 
 def test_enqueue():
-    """test enqueue method"""
+    """Test enqueue method."""
     from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
@@ -18,7 +19,7 @@ def test_enqueue():
 
 
 def test_dequeue():
-    """test dequeue method"""
+    """Test dequeue method."""
     from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
@@ -27,6 +28,7 @@ def test_dequeue():
 
 
 def test_peek():
+    """Test peek method."""
     from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
@@ -35,6 +37,7 @@ def test_peek():
 
 
 def test_size():
+    """Test size method."""
     from Queue import Queue
     q = Queue()
     q.enqueue(data[0])

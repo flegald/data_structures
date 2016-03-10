@@ -1,15 +1,18 @@
 #  _*_ coding:utf-8 _*_
-"""A module to create a queue data structure"""
+"""A module to create a queue data structure."""
 from Node import Node
 
+
 class Queue(object):
-    """Queue data structure object creator"""
+    """Queue data structure object creator."""
+
     def __init__(self, head=None, tail=None):
+        """Queue object constructor."""
         self.head = head
         self.tail = tail
         self.length = 0
 
-    def enqueue(self,data):
+    def enqueue(self, data):
         """Enqueue method for Queue object."""
         self.head = Node(data, self.head)
         if self.tail is None:
