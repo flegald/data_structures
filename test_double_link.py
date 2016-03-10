@@ -10,57 +10,6 @@ def test_node():
     assert isinstance(Node(data[0]), Node)
 
 
-def test_set_data():
-    """Test node class set data method."""
-    from double_link import Node
-    test_node = Node(data[0])
-    test_node.set_data(data[1])
-    assert test_node.data == data[1]
-
-
-def test_set_next():
-    """Test node class set next method."""
-    from double_link import Node
-    test_node1 = Node(data[0])
-    test_node2 = Node(data[1])
-    test_node1.set_next(test_node2)
-    assert test_node1.next_node == test_node2
-
-
-def test_set_prev():
-    """Test node class set prev method."""
-    from double_link import Node
-    test_node1 = Node(data[0])
-    test_node2 = Node(data[1])
-    test_node2.set_prev(test_node1)
-    assert test_node2.prev_node == test_node1
-
-
-def test_get_data():
-    """Test node class get data method."""
-    from double_link import Node
-    test_node = Node(data[0])
-    assert test_node.get_data() == data[0]
-
-
-def test_get_next():
-    """Test node class get next method."""
-    from double_link import Node
-    test_node1 = Node(data[0])
-    test_node2 = Node(data[1])
-    test_node1.set_next(test_node2)
-    assert test_node1.get_next() == test_node2
-
-
-def test_get_prev():
-    """Test node class get prev method."""
-    from double_link import Node
-    test_node1 = Node(data[0])
-    test_node2 = Node(data[1])
-    test_node2.set_prev(test_node1)
-    assert test_node2.get_prev() == test_node1
-
-
 def test_double_link():
     """Test double_link class constructor."""
     from double_link import Double_Link

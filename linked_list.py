@@ -10,22 +10,6 @@ class Node(object):
         self.data = data
         self.next_node = next_node
 
-    def set_data(self, data):
-        """Method designed to set data of current node."""
-        self.data = data
-
-    def get_data(self):
-        """Method designed to return data of current node."""
-        return self.data
-
-    def set_next(self, next):
-        """Method designed to set next node of current node."""
-        self.next_node = next
-
-    def get_next(self):
-        """Method designed to return next node of current node."""
-        return self.next_node
-
 
 class Linked_List(object):
     """Linked list object to store a list of nodes."""

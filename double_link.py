@@ -11,30 +11,6 @@ class Node(object):
         self.next_node = next_node
         self.prev_node = prev_node
 
-    def set_data(self, data):
-        """Insert data into self Node."""
-        self.data = data
-
-    def get_data(self):
-        """Access self Node's data."""
-        return self.data
-
-    def set_next(self, next_node):
-        """change node that self is pointing to."""
-        self.next_node = next_node
-
-    def get_next(self):
-        """Access Node self Node is pointing to."""
-        return self.next_node
-
-    def set_prev(self, prev):
-        """Set Node that self Node points back to."""
-        self.prev_node = prev
-
-    def get_prev(self):
-        """Access Node that self Node is pointing back to."""
-        return self.prev_node
-
 
 class Double_Link(object):
     """Create Double List Object."""
