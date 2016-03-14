@@ -1,18 +1,18 @@
 # -*- conding: utf-8 -*-
-"""Test queue module."""
+"""Test Queue module."""
 
 data = [1, 2, 3, 4]
 
 
 def test_queue():
     """Test instantiate queue."""
-    from queue import Queue
+    from Queue import Queue
     assert isinstance(Queue(), Queue)
 
 
 def test_enqueue():
     """Test enqueue method."""
-    from queue import Queue
+    from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
     assert q.head.data == data[0]
@@ -20,7 +20,7 @@ def test_enqueue():
 
 def test_dequeue():
     """Test dequeue method."""
-    from queue import Queue
+    from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
     q.enqueue(data[1])
@@ -29,7 +29,7 @@ def test_dequeue():
 
 def test_peek():
     """Test peek method."""
-    from queue import Queue
+    from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
     q.enqueue(data[1])
@@ -38,7 +38,7 @@ def test_peek():
 
 def test_size():
     """Test size method."""
-    from queue import Queue
+    from Queue import Queue
     q = Queue()
     q.enqueue(data[0])
     q.enqueue(data[1])
