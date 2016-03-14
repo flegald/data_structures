@@ -4,3 +4,6 @@ src/__pycache__/
 build/
 dist/
 .tox/
+/data_structures/*
+/__pycache__/*
+.DS_Store
