@@ -1,0 +1,53 @@
+actionid: tox
+msg: packaging
+cmdargs: ['c:\\users\\ben\\codefellows\\401d2\\week_2\\data_structures\\scripts\\python3.exe', local('C:\\Users\\Ben\\codefellows\\401d2\\week_2\\data_structures\\data_structures\\setup.py'), 'sdist', '--formats=zip', '--dist-dir', local('C:\\Users\\Ben\\codefellows\\401d2\\week_2\\data_structures\\data_structures\\.tox\\dist')]
+env: None
+
+running sdist
+running egg_info
+writing top-level names to src\data_structures.egg-info\top_level.txt
+writing src\data_structures.egg-info\PKG-INFO
+writing requirements to src\data_structures.egg-info\requires.txt
+writing dependency_links to src\data_structures.egg-info\dependency_links.txt
+reading manifest file 'src\data_structures.egg-info\SOURCES.txt'
+writing manifest file 'src\data_structures.egg-info\SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt
+
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: if 'author' supplied, 'author_email' must be supplied too
+
+creating data_structures-0.1
+creating data_structures-0.1\src
+creating data_structures-0.1\src\data_structures.egg-info
+making hard links in data_structures-0.1...
+hard linking setup.py -> data_structures-0.1
+hard linking src\Node.py -> data_structures-0.1\src
+hard linking src\Queue.py -> data_structures-0.1\src
+hard linking src\double_link.py -> data_structures-0.1\src
+hard linking src\linked_list.py -> data_structures-0.1\src
+hard linking src\parenthetics.py -> data_structures-0.1\src
+hard linking src\stack.py -> data_structures-0.1\src
+hard linking src\data_structures.egg-info\PKG-INFO -> data_structures-0.1\src\data_structures.egg-info
+hard linking src\data_structures.egg-info\SOURCES.txt -> data_structures-0.1\src\data_structures.egg-info
+hard linking src\data_structures.egg-info\dependency_links.txt -> data_structures-0.1\src\data_structures.egg-info
+hard linking src\data_structures.egg-info\requires.txt -> data_structures-0.1\src\data_structures.egg-info
+hard linking src\data_structures.egg-info\top_level.txt -> data_structures-0.1\src\data_structures.egg-info
+Writing data_structures-0.1\setup.cfg
+creating 'C:\Users\Ben\codefellows\401d2\week_2\data_structures\data_structures\.tox\dist\data_structures-0.1.zip' and adding 'data_structures-0.1' to it
+adding 'data_structures-0.1\PKG-INFO'
+adding 'data_structures-0.1\setup.cfg'
+adding 'data_structures-0.1\setup.py'
+adding 'data_structures-0.1\src\double_link.py'
+adding 'data_structures-0.1\src\linked_list.py'
+adding 'data_structures-0.1\src\Node.py'
+adding 'data_structures-0.1\src\parenthetics.py'
+adding 'data_structures-0.1\src\Queue.py'
+adding 'data_structures-0.1\src\stack.py'
+adding 'data_structures-0.1\src\data_structures.egg-info\dependency_links.txt'
+adding 'data_structures-0.1\src\data_structures.egg-info\PKG-INFO'
+adding 'data_structures-0.1\src\data_structures.egg-info\requires.txt'
+adding 'data_structures-0.1\src\data_structures.egg-info\SOURCES.txt'
+adding 'data_structures-0.1\src\data_structures.egg-info\top_level.txt'
+removing 'data_structures-0.1' (and everything under it)
