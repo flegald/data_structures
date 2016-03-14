@@ -1,5 +1,5 @@
 # -*- conding: utf-8 -*-
-"""Test queue module."""
+"""Test Queue module."""
 
 data = [1, 2, 3, 4]
 
