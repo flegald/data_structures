@@ -1,9 +1,9 @@
+*.pyc
 /.cache/
 src/data_structures.egg-info/
-src/__pycache__/
+__pycache__/
 build/
 dist/
 .tox/
 /data_structures/*
-/__pycache__/*
 .DS_Store
