@@ -4,11 +4,9 @@
 from setuptools import setup
 
 
-setup(name='data structures',
+setup(name='data_structures',
       description='Collection of data structures creatd in Python.',
       version=0.1,
-      keywords=[],
-      classifiers=[],
       author='Ben Garnaat',
       author_email='',
       license='MIT',
