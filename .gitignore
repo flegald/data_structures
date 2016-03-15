@@ -1,6 +1,7 @@
-/.cache/
-src/data_structures.egg-info/
-src/__pycache__/
+.cache/
+data_structures.egg-info/
+__pycache__/
 build/
 dist/
 .tox/
+*.pyc
