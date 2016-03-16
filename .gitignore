@@ -5,3 +5,7 @@ build/
 dist/
 .tox/
 *.pyc
+/data_structures
+.DS_Store
+src/Heap.py
+src/test_heap.py
