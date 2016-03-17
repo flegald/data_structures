@@ -23,4 +23,7 @@ def test_pop():
 
 def test_peek():
     """Test insert method."""
-    pass
+    from priorityq import PriorityQueue
+    pq = PriorityQueue()
+    pq.insert(*DATA[0])
+    assert pq.peek() == DATA[0][1]
