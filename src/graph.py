@@ -68,3 +68,17 @@ class Graph(object):
             return val in self.g[key]
         except KeyError:
             return "Node does not exist"
+
+    def depth_first_traversal(self, start):
+        """Traverse the graph by depth."""
+        stack = [start]
+        visited = set()
+        path = []
+        while stack:
+            cursor = stack.pop()
+            if cursor not in visited:
+                stack.extend(self.g[cursor])
+                visited.add(cursor)
+                path.append(cursor)
+        return path
+
