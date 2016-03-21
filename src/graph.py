@@ -88,11 +88,12 @@ class Graph(object):
         queue.put(start)
         visited = set()
         path = []
-        while queue:
+        while not queue.empty():
             cursor = queue.get()
             if cursor not in visited:
                 visited.add(cursor)
-                queue.add(self.g[cursor])
+                for item in self.g[cursor]:
+                    queue.put(item)
                 path.append(cursor)
         return path
 
