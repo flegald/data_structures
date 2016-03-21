@@ -47,6 +47,7 @@ CASES = [
 
 @pytest.fixture(params=CASES)
 def depth_case(request):
+    """Assemble a Graph and returned the expected result for a depth search."""
     edges, result_dict = request.param
     graph = Graph()
     for edge in edges:
@@ -57,6 +58,7 @@ def depth_case(request):
 
 @pytest.fixture(params=CASES)
 def breadth_case(request):
+    """Return a Graph and expected results for a breadth search."""
     edges, result_dict = request.param
     graph = Graph()
     for edge in edges:
@@ -66,12 +68,14 @@ def breadth_case(request):
 
 
 def test_depth_first(depth_case):
+    """Test that depth first search returns the expected search path."""
     graph, tests = depth_case
     for start, expected in tests.items():
         assert graph.depth_first_traversal(start) == expected
 
 
 def test_breadth_first(breadth_case):
+    """Test that breadth first search returns the expected search path."""
     graph, tests = breadth_case
     for start, expected in tests.items():
         assert graph.breadth_first_traversal(start) == expected
