@@ -1,6 +1,6 @@
 #  _*_ coding: utf-8 _*_
 """Create a graph type data structure."""
-
+from queue import Queue
 try:
     from itertools import izip_longest as zip_longest
 except ImportError:
@@ -81,4 +81,19 @@ class Graph(object):
                 visited.add(cursor)
                 path.append(cursor)
         return path
+
+    def breadth_first_traversal(self, start):
+        """Traverse the graph by breadth."""
+        queue = Queue()
+        queue.put(start)
+        visited = set()
+        path = []
+        while queue:
+            cursor = queue.get()
+            if cursor not in visited:
+                visited.add(cursor)
+                queue.add(self.g[cursor])
+                path.append(cursor)
+        return path
+
 
