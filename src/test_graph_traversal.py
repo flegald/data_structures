@@ -32,5 +32,5 @@ def simple_graph():
 
 def test_simple(simple_graph):
     graph, tests = simple_graph
-    for start, expected in tests:
+    for start, expected in tests.items():
         assert graph.depth_first_traversal(start) == expected
