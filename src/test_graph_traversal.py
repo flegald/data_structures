@@ -1,36 +1,29 @@
 """Test graph_traversal depth-first and breadth-first search functions."""
 
 import pytest
-from string import printable
+# from string import printable
 from graph import Graph
 
 # Every test should return a graph and a simple solution dict.
 
 
-@pytest.fixture()
-def simple_graph():
-    """Return graph and a solution dict."""
+CASES = [
+    (['A>B'], {'A': ['A', 'B'], 'B': ['B']}),
+    (['A>B', 'B>A'], {'A': ['A', 'B'], 'B': ['B', 'A']})
+]
+
+
+@pytest.fixture(params=CASES)
+def test_case(request):
+    edges, result_dict = request.param
     graph = Graph()
-    graph.add_node('A')
-    graph.add_node('B')
-    graph.add_edge('A', 'B')
-    return graph, {'A': ['A', 'B'], 'B': ['B']}
+    for edge in edges:
+        node1, node2 = edge.split('>')
+        graph.add_edge(node1, node2)
+    return graph, result_dict
 
 
-# @pytest.fixture()
-# def random_graph():
-#     graph = Graph()
-#     node_names = list(printable)
-#     random.shuffle(node_names)
-#     size = random.choice(range(1, len(node_names)))
-#     expected = []
-#     for n in range(size):
-#         name = node_names.pop()
-
-#     return graph
-
-
-def test_simple(simple_graph):
-    graph, tests = simple_graph
+def test_graph(test_case):
+    graph, tests = test_case
     for start, expected in tests.items():
         assert graph.depth_first_traversal(start) == expected
