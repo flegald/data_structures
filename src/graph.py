@@ -1,5 +1,6 @@
 #  _*_ coding: utf-8 _*_
 """Create a graph type data structure."""
+import time
 import random
 try:
     from itertools import izip_longest as zip_longest
@@ -78,11 +79,6 @@ class Graph(object):
         path = []
         while stack:
             cursor = stack.pop()
-            print('cursor', cursor)
-            print('stack', stack)
-            print('visited', visited)
-            print('path', path)
-            print('\n')
             if cursor not in visited:
                 stack.extend(self.g[cursor][::-1])
                 visited.add(cursor)
@@ -105,13 +101,37 @@ class Graph(object):
         return path
 
 
-if __name__ == "__main___":
+if __name__ == "__main__":
+    # Establish a list of the two methods.
+    methods = [Graph.depth_first_traversal, Graph.breadth_first_traversal]
+    time_results = {method.__name__: [] for method in methods}
 
-    graph = Graph()
-    for i in range(100):
-        graph.add_node(random.randrange(1, 101, 1))
-    for i in range(100):
-        graph.add_edge(random.sample(graph.g, 1)[0], random.sample(graph.g, 1)[0])
+    # Do 40 total trials.
+    for n in range(40):
+        # Initialize graph instance and create 100 random nodes and edges.
+        graph = Graph()
+        for i in range(100):
+            graph.add_node(random.randrange(1, 101))
+        for i in range(100):
+            graph.add_edge(random.choice(list(graph.g.keys())),
+                           random.choice(list(graph.g.keys())))
 
-    print(graph.depth_first_traversal(random.sample(graph.g, 1)[0]))
-    print(graph.breadth_first_traversal(random.sample(graph.g, 1)[0]))
+        for method in methods:
+            # Make a starting point time stamp.
+            start_time = time.time()
+            # Choose a random start node.
+            start_node = random.choice(list(graph.g.keys()))
+            # Do a thousand searches on given graph.
+            for n in range(1000):
+                method(graph, start_node)
+            # Check how much time has elapsed since starting time stamp.
+            time_delta = time.time() - start_time
+            print('{} completed in {} seconds.'.format(
+                method.__name__, time_delta))
+            # Log the elapsed time for 1000 searches in our time results.
+            time_results[method.__name__].append(time_delta)
+
+    # Find the average time of 40000 trials.
+    for method_name, times in time_results.items():
+        print('{} averaged {} seconds.'.format(
+            method_name, sum(times) / float(len(times))))
