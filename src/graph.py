@@ -76,8 +76,13 @@ class Graph(object):
         path = []
         while stack:
             cursor = stack.pop()
+            print('cursor', cursor)
+            print('stack', stack)
+            print('visited', visited)
+            print('path', path)
+            print('\n')
             if cursor not in visited:
-                stack.extend(self.g[cursor])
+                stack.extend(self.g[cursor][::-1])
                 visited.add(cursor)
                 path.append(cursor)
         return path
