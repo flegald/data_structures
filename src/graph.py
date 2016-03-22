@@ -1,10 +1,12 @@
 #  _*_ coding: utf-8 _*_
 """Create a graph type data structure."""
-from queue import Queue
+import random
 try:
     from itertools import izip_longest as zip_longest
+    from Queue import Queue
 except ImportError:
     from itertools import zip_longest
+    from queue import Queue
 
 
 class Graph(object):
@@ -98,3 +100,13 @@ class Graph(object):
         return path
 
 
+if __name__ == "__main___":
+
+    graph = Graph()
+    for i in range(100):
+        graph.add_node(random.randrange(1, 101, 1))
+    for i in range(100):
+        graph.add_edge(random.sample(graph.g, 1)[0], random.sample(graph.g, 1)[0])
+
+    print(graph.depth_first_traversal(random.sample(graph.g, 1)[0]))
+    print(graph.breadth_first_traversal(random.sample(graph.g, 1)[0]))
