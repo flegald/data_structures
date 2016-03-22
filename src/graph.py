@@ -2,12 +2,11 @@
 """Create a graph type data structure."""
 import time
 import random
+from collections import deque
 try:
     from itertools import izip_longest as zip_longest
-    from Queue import Queue
 except ImportError:
     from itertools import zip_longest
-    from queue import Queue
 
 
 class Graph(object):
@@ -87,16 +86,15 @@ class Graph(object):
 
     def breadth_first_traversal(self, start):
         """Traverse the graph by breadth."""
-        queue = Queue()
-        queue.put(start)
+        queue = deque(start)
         visited = set()
         path = []
-        while not queue.empty():
-            cursor = queue.get()
+        while bool(len(queue)):
+            cursor = queue.popleft()
             if cursor not in visited:
                 visited.add(cursor)
                 for item in self.g[cursor]:
-                    queue.put(item)
+                    queue.append(item)
                 path.append(cursor)
         return path
 
