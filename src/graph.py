@@ -1,6 +1,8 @@
 #  _*_ coding: utf-8 _*_
 """Create a graph type data structure."""
-
+import time
+import random
+from collections import deque
 try:
     from itertools import izip_longest as zip_longest
 except ImportError:
@@ -68,3 +70,66 @@ class Graph(object):
             return val in self.g[key]
         except KeyError:
             return "Node does not exist"
+
+    def depth_first_traversal(self, start):
+        """Traverse the graph by depth."""
+        stack = [start]
+        visited = set()
+        path = []
+        while stack:
+            cursor = stack.pop()
+            if cursor not in visited:
+                stack.extend(self.g[cursor][::-1])
+                visited.add(cursor)
+                path.append(cursor)
+        return path
+
+    def breadth_first_traversal(self, start):
+        """Traverse the graph by breadth."""
+        queue = deque(start)
+        visited = set()
+        path = []
+        while bool(len(queue)):
+            cursor = queue.popleft()
+            if cursor not in visited:
+                visited.add(cursor)
+                for item in self.g[cursor]:
+                    queue.append(item)
+                path.append(cursor)
+        return path
+
+
+if __name__ == "__main__":
+    # Establish a list of the two methods.
+    methods = [Graph.depth_first_traversal, Graph.breadth_first_traversal]
+    time_results = {method.__name__: [] for method in methods}
+
+    # Do 40 total trials.
+    for n in range(40):
+        # Initialize graph instance and create 100 random nodes and edges.
+        graph = Graph()
+        for i in range(100):
+            graph.add_node(random.randrange(1, 101))
+        for i in range(100):
+            graph.add_edge(random.choice(list(graph.g.keys())),
+                           random.choice(list(graph.g.keys())))
+
+        for method in methods:
+            # Make a starting point time stamp.
+            start_time = time.time()
+            # Choose a random start node.
+            start_node = random.choice(list(graph.g.keys()))
+            # Do a thousand searches on given graph.
+            for n in range(1000):
+                method(graph, start_node)
+            # Check how much time has elapsed since starting time stamp.
+            time_delta = time.time() - start_time
+            print('{} completed in {} seconds.'.format(
+                method.__name__, time_delta))
+            # Log the elapsed time for 1000 searches in our time results.
+            time_results[method.__name__].append(time_delta)
+
+    # Find the average time of 40000 trials.
+    for method_name, times in time_results.items():
+        print('{} averaged {} seconds.'.format(
+            method_name, sum(times) / float(len(times))))
