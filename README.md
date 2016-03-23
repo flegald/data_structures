@@ -1,13 +1,16 @@
-An example of classic data structures
+An example of classic data structures.
+
+As a weighted graph, this data structure associated a weight integer as the third tuple item of any
+edge along with the two connected nodes.
 
 #GRAPH:
 (2016/21/03):
   Methods:
-  - Graph():  instantiate a Graph object
+  - Graph():  instantiate a Weighted Graph object
   - list_nodes():  Return a list of keys present in the graph.
-  - list_edges():  Return a list of edges present in the graph.
+  - list_edges():  Return a list of edges present in the graph, including the weight of the edge.
   - add_node(key):  Add a new node to the graph.
-  - add_edge(key, val):  Add an edge between nodes.  Add any nodes not present as nodes in the graph.
+  - add_edge(key, val):  Add a weighted edge between nodes.  Add any nodes not present as nodes in the graph.
   - del_node(key):  Remove an existing node from graph.  Remove any edges containing this node.
   - del_edge(key, val):  Remove an existing edge from two nodes.
   - has_node(key):  Return True if node exists, False if node not present.
