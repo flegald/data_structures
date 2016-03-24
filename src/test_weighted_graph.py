@@ -2,9 +2,6 @@
 """Test graph data structure."""
 import pytest
 
-DATA = [1, 2, 3, 4]
-
-
 NODES = ['A', 'B', 'C', 'D', 'E', 'F']
 EDGES = [
     ('A', 'B', 1),
