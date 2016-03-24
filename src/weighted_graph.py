@@ -113,7 +113,8 @@ class Graph(object):
     def dijkstra(self, start, end):
         """Dijkstra shortest path algorithm."""
         current = start
-        unvisited = set()
+        unvisited = set([start])
+        visited = set()
         distances = {key: (inf, None) for key in self.g}
         distances[current] = (0, None)
         while unvisited:
@@ -121,12 +122,15 @@ class Graph(object):
             next_current = None
             for neighbor, distance in self.g[current].items():
                 tent_dist = distances[current][0] + distance
-                if tent_dist < shortest_tent_dist:
-                    next_current = neighbor
-                    shortest_tent_dist = tent_dist
+                if neighbor not in visited:
+                    unvisited.add(neighbor)
+                    if tent_dist < shortest_tent_dist:
+                        next_current = neighbor
+                        shortest_tent_dist = tent_dist
                 if tent_dist < distances[neighbor][0]:
                     distances[neighbor] = (tent_dist, current)
             unvisited.discard(current)
+            visited.add(current)
             try:
                 current = next_current or unvisited.pop()
             except KeyError:
@@ -135,7 +139,8 @@ class Graph(object):
         best_prev = end
         while best_prev is not None:
             path_rev.append(best_prev)
-            best_prev = distance[end][1]
+            best_prev = distances[best_prev][1]
+            # import pdb; pdb.set_trace()
         return reversed(path_rev)
 
 
