@@ -2,6 +2,7 @@
 """Create a graph type data structure."""
 import time
 import random
+from math import inf
 from collections import deque
 try:
     from itertools import izip_longest as zip_longest
@@ -108,6 +109,34 @@ class Graph(object):
                     queue.append(item)
                 path.append(cursor)
         return path
+
+    def dijkstra(self, start, end):
+        """Dijkstra shortest path algorithm."""
+        current = start
+        unvisited = set()
+        distances = {key: (inf, None) for key in self.g}
+        distances[current] = (0, None)
+        while unvisited:
+            shortest_tent_dist = inf
+            next_current = None
+            for neighbor, distance in self.g[current].items():
+                tent_dist = distances[current][0] + distance
+                if tent_dist < shortest_tent_dist:
+                    next_current = neighbor
+                    shortest_tent_dist = tent_dist
+                if tent_dist < distances[neighbor][0]:
+                    distances[neighbor] = (tent_dist, current)
+            unvisited.discard(current)
+            try:
+                current = next_current or unvisited.pop()
+            except KeyError:
+                break
+        path_rev = []
+        best_prev = end
+        while best_prev is not None:
+            path_rev.append(best_prev)
+            best_prev = distance[end][1]
+        return reversed(path_rev)
 
 
 if __name__ == "__main__":
