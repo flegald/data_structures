@@ -143,6 +143,54 @@ class Graph(object):
             # import pdb; pdb.set_trace()
         return reversed(path_rev)
 
+    def a_star(self, start, end):
+        """A* heuristic shortest path algorithm."""
+        total_weight = sum([weight for node, conn in self.g.items()
+                            for nodes, weight in conn.items()])
+        total_edges = sum([len(conn)for node, conn in self.g.items()])
+        avg_weight = total_weight / float(total_edges)
+
+        current = start
+        unvisited = set([start])
+        visited = set()
+        distances = {key: (inf, None) for key in self.g}
+        heur_distances = {key: (inf, None) for key in self.g}
+        distances[current] = (0, None)
+        heur_distances[current] = self._heuristic(current, avg_weight)
+        while unvisited:
+
+            for neighbor, distance in self.g[current].items():
+                tent_dist = distances[current][0] + distance
+                if neighbor not in visited:
+                    unvisited.add(neighbor)
+                if tent_dist < distances[neighbor][0]:
+                    distances[neighbor] = (tent_dist, current)
+            unvisited.discard(current)
+            visited.add(current)
+
+            # Use a heuristic function to calculate the best next move.
+            try:
+                current = self._heuristic(current, avg_weight) or unvisited.pop()
+            except KeyError:
+                break
+
+        path_rev = []
+        best_prev = end
+        while best_prev is not None:
+            path_rev.append(best_prev)
+            best_prev = distances[best_prev][1]
+        return reversed(path_rev)
+
+    def _heuristic(self, current, avg_weight):
+        """Estimate next best move considering graph's average weight edge."""
+        next_values = {}
+        for conn in self.g[current]:
+            next_weights = sum([weight for weight in self.g[conn].values()])
+            next_values[conn] = next_weights / float(avg_weight)
+        if not next_values:
+            return None
+        return min(next_values, key=lambda k: next_values[k])
+
 
 if __name__ == "__main__":
     # Establish a list of the two methods.

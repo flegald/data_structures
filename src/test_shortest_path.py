@@ -2,7 +2,6 @@
 
 import pytest
 
-# Make this more complex
 GEO_EDGES = [
     ('Seattle', 'Portland', 145),
     ('Seattle', 'San Francisco', 680),
@@ -47,21 +46,35 @@ def another_instance():
     return inst
 
 
+@pytest.fixture(scope='function', params=['dijkstra', 'a_star'])
+def method(request, geo_instance):
+    """Establish which method we are using for a test."""
+    return getattr(geo_instance, request.param)
+
+
 @pytest.mark.parametrize("origin, destination, distance", GEO_EDGES)
-def test_sea_port(geo_instance, origin, destination, distance):
-    assert list(geo_instance.dijkstra(origin, destination)) == [origin, destination]
-
-def test_isoloated_node(geo_instance):
-    assert list(geo_instance.dijkstra('Dallas', 'Dallas')) == ['Dallas']
+def test_direct_route(method, origin, destination, distance):
+    """Test that geographical direct path is the shortest."""
+    assert list(method(origin, destination)) == [origin, destination]
 
 
-def test_1(geo_instance):
-    assert list(geo_instance.dijkstra('Seattle', 'Los Angeles')) == ['Seattle', 'San Francisco', 'Los Angeles']
+def test_isoloated_node(method):
+    """Test that a single unconnected node returns only iteself in a path."""
+    assert list(method('Dallas', 'Dallas')) == ['Dallas']
 
 
-def test_2(geo_instance):
-    assert list(geo_instance.dijkstra('Salt Lake City', 'San Francisco')) == ['Salt Lake City', 'Portland', 'San Francisco']
+def test_1(method):
+    """Check a specific expected distance."""
+    expected = ['Seattle', 'San Francisco', 'Los Angeles']
+    assert list(method('Seattle', 'Los Angeles')) == expected
+
+
+def test_2(method):
+    """Check a specific expected distance."""
+    expected = ['Salt Lake City', 'Portland', 'San Francisco']
+    assert list(method('Salt Lake City', 'San Francisco')) == expected
 
 
 def test3(another_instance):
+    """Check that shortest route is not most direct on this graph."""
     assert list(another_instance.dijkstra('A', 'B')) == ['A', 'D', 'E', 'B']
