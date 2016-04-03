@@ -2,7 +2,10 @@
 """Create a graph type data structure."""
 import time
 import random
-from math import inf
+try:
+    from math import inf
+except ImportError:
+    inf = float('inf')
 from collections import deque
 try:
     from itertools import izip_longest as zip_longest
