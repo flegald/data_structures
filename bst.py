@@ -43,17 +43,26 @@ class Bst(object):
 
     def insert(self, val):
         """Insert into tree."""
+        node = Node(val)
         if self.root is None:
-            node = Node(val)
             self.root = node
-        current = self.root
-        if current.left:
-            pass
         else:
-            if val < current.val:
-                current.left = node
-            else:
-                current.right = node
+            current = self.root
+            while True:
+                if current.val == val:
+                    break
+                elif val < current.val:
+                    if current.left:
+                        current = current.left
+                    else:
+                        current.left = node
+                        break
+                else:
+                    if current.right:
+                        current = current.right
+                    else:
+                        current.right = node
+                        break
 
 
 

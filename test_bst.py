@@ -28,6 +28,16 @@ def bst():
     return bst
 
 
+@pytest.fixture()
+def bst_with_stuff():
+    """Create BST with stuff in it."""
+    from bst import Bst
+    bst = Bst()
+    for i in range(0, 21):
+        bst.insert(i)
+    return bst
+
+
 # Node constructor test
 
 def test_node_constructor():
@@ -83,4 +93,32 @@ def test_insert_empty_val(bst):
     """Test."""
     bst.insert(4)
     assert bst.root.val == 4
+
+
+def test_one_node_insert(bst):
+    """Test."""
+    bst.insert(4)
+    bst.insert(2)
+    assert bst.root.left.val == 2
+
+
+def test_one_node_insert_parent(bst):
+    """Test."""
+    bst.insert(4)
+    bst.insert(2)
+    assert bst.root.left.parent.val == 4
+
+
+def test_one_node_insert_greater_than(bst):
+    """Test."""
+    bst.insert(4)
+    bst.insert(5)
+    assert bst.root.right.val == 5
+
+
+def test_insert_duplicate(bst):
+    """Test can't insert duplicates."""
+    bst.insert(4)
+    bst.insert(4)
+    assert bst.root.left is None and bst.root.right is None
 
