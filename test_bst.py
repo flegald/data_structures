@@ -33,7 +33,7 @@ def bst_with_stuff():
     """Create BST with stuff in it."""
     from bst import Bst
     bst = Bst()
-    for i in range(0, 21):
+    for i in range(1, 21):
         bst.insert(i)
     return bst
 
@@ -129,3 +129,24 @@ def test_is_it_in_there(bst_with_stuff):
     """Test if what I want is in there."""
     assert bst_with_stuff.contains(4)
 
+
+def test_it_is_not_in_there(bst_with_stuff):
+    """Test if it's not there."""
+    assert not bst_with_stuff.contains(90)
+
+
+def test_not_there_empty(bst):
+    """Test contains on empty."""
+    assert not bst.contains(4)
+
+
+# Size method test
+
+def test_size_with_stuff(bst_with_stuff):
+    """Test."""
+    assert bst_with_stuff.size == 20
+
+
+def test_size_empty(bst):
+    """Test."""
+    assert bst.size == 0

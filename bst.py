@@ -40,12 +40,14 @@ class Bst(object):
     def __init__(self, root=None):
         """Init BST."""
         self.root = root
+        self.size = 0
 
     def insert(self, val):
         """Insert into tree."""
         node = Node(val)
         if self.root is None:
             self.root = node
+            self.size += 1
         else:
             current = self.root
             while True:
@@ -56,12 +58,14 @@ class Bst(object):
                         current = current.left
                     else:
                         current.left = node
+                        self.size += 1
                         break
                 else:
                     if current.right:
                         current = current.right
                     else:
                         current.right = node
+                        self.size += 1
                         break
 
     def contains(self, val):
@@ -83,8 +87,8 @@ class Bst(object):
                 else:
                     return False
 
-
-
-
+    def size(self):
+        """Return size of list."""
+        return self.size
 
 
