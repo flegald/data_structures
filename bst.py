@@ -64,6 +64,24 @@ class Bst(object):
                         current.right = node
                         break
 
+    def contains(self, val):
+        """Return if node is contained in bst."""
+        if not self.root:
+            return False
+        current = self.root
+        while True:
+            if current.val == val:
+                return True
+            elif val < current.val:
+                if current.left:
+                    current = current.left
+                else:
+                    return False
+            else:
+                if current.right:
+                    current = current.right
+                else:
+                    return False
 
 
 

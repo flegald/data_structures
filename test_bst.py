@@ -122,3 +122,10 @@ def test_insert_duplicate(bst):
     bst.insert(4)
     assert bst.root.left is None and bst.root.right is None
 
+
+# Contains method tests
+
+def test_is_it_in_there(bst_with_stuff):
+    """Test if what I want is in there."""
+    assert bst_with_stuff.contains(4)
+
