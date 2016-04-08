@@ -33,6 +33,17 @@ class Node(object):
         if new_node is not None:
             new_node.parent = self
 
+    def depth(self):
+        """Return depth of the tree."""
+        if not self.val:
+            return 0
+        elif not self.left and not self.right:
+            return 1
+        else:
+            left_fepth = self.left.depth() if self.left else 0
+            right_depth = self.right.depth() if self.right else 0
+            return max(left_fepth, right_depth) + 1
+
 
 class Bst(object):
     """Binary Search Tree."""
@@ -90,5 +101,15 @@ class Bst(object):
     def size(self):
         """Return size of list."""
         return self.size
+
+    def depth(self):
+        """Return the number of levels in the tree."""
+        if not self.root:
+            return 0
+        return self.root.depth()
+
+
+
+
 
 

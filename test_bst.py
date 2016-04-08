@@ -3,6 +3,14 @@ import pytest
 
 
 @pytest.fixture()
+def empty_node():
+    """Create empty node instance."""
+    from bst import Node
+    node = Node()
+    return node
+
+
+@pytest.fixture()
 def node_instance1():
     """Create BST instance."""
     from bst import Node
@@ -81,7 +89,7 @@ def test_right_setter_parent(node_instance1, node_instance2):
     assert node_instance2.parent == node_instance1
 
 
-# Bst Insert Tests
+# Bst insert tests
 
 def test_insert_empty(bst):
     """Test what title says."""
@@ -140,7 +148,7 @@ def test_not_there_empty(bst):
     assert not bst.contains(4)
 
 
-# Size method test
+# Size method tests
 
 def test_size_with_stuff(bst_with_stuff):
     """Test."""
@@ -150,3 +158,22 @@ def test_size_with_stuff(bst_with_stuff):
 def test_size_empty(bst):
     """Test."""
     assert bst.size == 0
+
+
+# Depth method tests
+
+def test_depth_empty(empty_node):
+    """Test one empty node has no depth."""
+    assert empty_node.depth() == 0
+
+
+def test_one_node_depth(node_instance1):
+    """Test one node with val has deoth."""
+    assert node_instance1.depth() == 1
+
+
+# def test_many_bst_depth(bst_with_stuff):
+#     """Test depth of bst with many nodes."""
+#     assert bst.depth() == 15
+
+
