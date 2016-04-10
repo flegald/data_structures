@@ -172,8 +172,19 @@ def test_one_node_depth(node_instance1):
     assert node_instance1.depth() == 1
 
 
-# def test_many_bst_depth(bst_with_stuff):
-#     """Test depth of bst with many nodes."""
-#     assert bst.depth() == 15
+def test_bst_depth_larger(bst):
+    """Test depth of bst with many nodes."""
+    bst.insert(4)
+    bst.insert(5)
+    bst.insert(7)
+    assert bst.depth() == 3
+
+
+def test_bst_depth_smaller(bst):
+    """Test depth of bst with many nodes."""
+    bst.insert(4)
+    bst.insert(5)
+    bst.insert(3)
+    assert bst.depth() == 2
 
 
