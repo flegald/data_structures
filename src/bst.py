@@ -194,12 +194,3 @@ class Bst(object):
                 queue.appendleft(current.right)
 
 
-
-
-
-
-
-
-
-
-
