@@ -40,9 +40,9 @@ class Node(object):
         elif not self.left and not self.right:
             return 1
         else:
-            left_fepth = self.left.depth() if self.left else 0
+            left_depth = self.left.depth() if self.left else 0
             right_depth = self.right.depth() if self.right else 0
-            return max(left_fepth, right_depth) + 1
+            return max(left_depth, right_depth) + 1
 
 
 class Bst(object):
