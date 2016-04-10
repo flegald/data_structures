@@ -29,9 +29,9 @@ References:
   (2016/10/4)
   Methods:
     - BST(): Instantiate a Binary Search Tree object.
+    
     - insert(): Add node object to tree.
     - contains(): Checks whether a given value is in the tree.
     - size(): Returns int signifying number of values stored in tree.
     - depth(): Returns int signifying how many levels deep the tree is.
     - balance(): Returns int signifying whether or not the left and right sides of the tree have an even depth.
-    
