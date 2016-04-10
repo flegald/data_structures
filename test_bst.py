@@ -188,3 +188,39 @@ def test_bst_depth_smaller(bst):
     assert bst.depth() == 2
 
 
+# Test Balance
+
+def test_empty_balance(bst):
+    """Test balance on empty tree."""
+    assert not bst.balance()
+
+
+def test_single_node_balance(bst):
+    """Test single node bst balance."""
+    bst.insert(1)
+    assert bst.balance() == 0
+
+
+def test_bst_multiple_nodes_balance(bst):
+    """Test two node balance."""
+    bst.insert(4)
+    bst.insert(3)
+    assert bst.balance() == 1
+
+
+def test_for_negative_balance(bst):
+    """Test fior negative balance result."""
+    bst.insert(4)
+    bst.insert(5)
+    assert bst.balance() == -1
+
+
+def test_more_nodes(bst):
+    """More balance test."""
+    bst.insert(4)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(1)
+    assert bst.balance() == 1
+
+

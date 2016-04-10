@@ -108,6 +108,28 @@ class Bst(object):
             return 0
         return self.root.depth()
 
+    def balance(self):
+        """Return how balanced the tree is."""
+        if not self.root:
+            return None
+        counter = 0
+        current = self.root
+
+        while current.left:
+            counter += 1
+            current = current.left
+
+        current = self.root
+
+        while current.right:
+            counter -= 1
+            current = current.right
+
+        return counter
+
+
+
+
 
 
 
