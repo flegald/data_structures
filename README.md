@@ -23,3 +23,15 @@ References:
   - Python time complexity (determine which data structures to use for what):  https://wiki.python.org/moin/TimeComplexity
   - Python set data structure:  https://docs.python.org/3/tutorial/datastructures.html#sets
   - Python queue data structure:  https://docs.python.org/3/library/queue.html
+
+
+#BINARY SEARCH TREE
+  (2016/10/4)
+  Methods:
+
+    - BST(): Instantiate a Binary Search Tree object.
+    - insert(): Add node object to tree.
+    - contains(): Checks whether a given value is in the tree.
+    - size(): Returns int signifying number of values stored in tree.
+    - depth(): Returns int signifying how many levels deep the tree is.
+    - balance(): Returns int signifying whether or not the left and right sides of the tree have an even depth.
