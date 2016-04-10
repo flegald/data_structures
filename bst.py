@@ -149,8 +149,8 @@ if __name__ == "__main__":
         times.append((time_passed, random_val))
 
     times.sort()
-    print("Fastest search: {} seconds for {}".format(times[0]))
-    print("Slowest search: {} seconds for {}".format(times[-1]))
+    print("Fastest search: {} seconds for {}".format(times[0][0], times[0][-1]))
+    print("Slowest search: {} seconds for {}".format(times[-1][0], times[-1][-1]))
 
 
 
