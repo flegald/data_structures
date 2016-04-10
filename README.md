@@ -35,3 +35,11 @@ References:
     - size(): Returns int signifying number of values stored in tree.
     - depth(): Returns int signifying how many levels deep the tree is.
     - balance(): Returns int signifying whether or not the left and right sides of the tree have an even depth.
+
+
+  Traversals:
+
+  - in_order(): Traverses list in order of left, self, right.
+  - pre_order(): Traverses list in order of self, left, right.
+  - post_order(): Traverses list in order of left, right, self.
+  - breath_first_search(): Traverses list in breath first order.
