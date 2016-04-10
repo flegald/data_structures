@@ -28,8 +28,8 @@ References:
 #BINARY SEARCH TREE
   (2016/10/4)
   Methods:
+
     - BST(): Instantiate a Binary Search Tree object.
-    
     - insert(): Add node object to tree.
     - contains(): Checks whether a given value is in the tree.
     - size(): Returns int signifying number of values stored in tree.
