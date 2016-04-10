@@ -1,4 +1,6 @@
 """Implementation of Binary Search Tree."""
+from collections import deque
+
 
 
 class Node(object):
@@ -63,6 +65,16 @@ class Node(object):
         if self.right:
             for item in self.right.pre_order():
                 yield item
+
+    def post_order(self):
+        """Yeild items by post-ordre traversal."""
+        if self.left:
+            for item in self.left.post_order():
+                yield item
+        if self.right:
+            for item in self.right.post_order():
+                yield item
+        yield self.val
 
 
 class Bst(object):
@@ -160,6 +172,28 @@ class Bst(object):
             return
         for item in self.root.pre_order():
             yield item
+
+    def post_order(self):
+        """Yield items by post-order traversal."""
+        if not self.root:
+            return
+        for item in self.root.post_order():
+            yield item
+
+    def breadth_first(self):
+        """Yield items by breadth-first traversal."""
+        if not self.root:
+            return
+        queue = deque([self.root])
+        while queue:
+            current = queue.pop()
+            yield current.val
+            if current.left:
+                queue.appendleft(current.left)
+            if current.right:
+                queue.appendleft(current.right)
+
+
 
 
 

@@ -248,11 +248,44 @@ def test_pre_order_empty(bst):
 
 
 def test_pre_order_with_stuff(bst):
-    """Test in-order on multiple nodes."""
+    """Test pre-order on multiple nodes."""
     bst.insert(4)
     bst.insert(2)
     bst.insert(1)
     bst.insert(3)
     assert list(bst.pre_order()) == [4, 2, 1, 3]
+
+# Post ordered traversal
+
+
+def test_post_order_empty(bst):
+    """Test post-order empty."""
+    assert not list(bst.pre_order())
+
+
+def test_post_order_with_stuff(bst):
+    """Test post-order on multiple nodes."""
+    bst.insert(4)
+    bst.insert(2)
+    bst.insert(1)
+    bst.insert(3)
+    assert list(bst.post_order()) == [1, 3, 2, 4]
+
+
+# Breadth first traversal
+
+def test_empty_breadth(bst):
+    """Test empty breadth first."""
+    assert list(bst.breadth_first()) == []
+
+
+def test_breadth_with_stuff(bst):
+    """Test breadth with stuff."""
+    bst.insert(4)
+    bst.insert(2)
+    bst.insert(1)
+    bst.insert(3)
+    bst.insert(5)
+    assert list(bst.breadth_first()) == [4, 2, 5, 1, 3]
 
 
