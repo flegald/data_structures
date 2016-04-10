@@ -6,3 +6,7 @@ dist/
 .tox/
 *.pyc
 data_structures/*
+lib/*
+bin/*
+include/*
+pip-selfcheck.json
