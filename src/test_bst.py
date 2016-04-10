@@ -224,3 +224,35 @@ def test_more_nodes(bst):
     assert bst.balance() == 1
 
 
+# In order traversal tets
+
+def test_empty_in_order(bst):
+    """Test empty in_order."""
+    assert not list(bst.in_order())
+
+
+def test_in_order_with_stuff(bst):
+    """Test in-order on multiple nodes."""
+    bst.insert(4)
+    bst.insert(2)
+    bst.insert(1)
+    bst.insert(3)
+    assert list(bst.in_order()) == [1, 2, 3, 4]
+
+
+# Pre order traversal tests
+
+def test_pre_order_empty(bst):
+    """Test pre-order empty."""
+    assert not list(bst.pre_order())
+
+
+def test_pre_order_with_stuff(bst):
+    """Test in-order on multiple nodes."""
+    bst.insert(4)
+    bst.insert(2)
+    bst.insert(1)
+    bst.insert(3)
+    assert list(bst.pre_order()) == [4, 2, 1, 3]
+
+

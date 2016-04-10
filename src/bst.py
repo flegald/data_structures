@@ -44,6 +44,26 @@ class Node(object):
             right_depth = self.right.depth() if self.right else 0
             return max(left_depth, right_depth) + 1
 
+    def in_order(self):
+        """Yield items by in-order traversal."""
+        if self.left:
+            for item in self.left.in_order():
+                yield item
+        yield self.val
+        if self.right:
+            for item in self.right.in_order():
+                yield item
+
+    def pre_order(self):
+        """Yield items by pre-order traversal."""
+        yield self.val
+        if self.left:
+            for item in self.left.pre_order():
+                yield item
+        if self.right:
+            for item in self.right.pre_order():
+                yield item
+
 
 class Bst(object):
     """Binary Search Tree."""
@@ -126,6 +146,20 @@ class Bst(object):
             current = current.right
 
         return counter
+
+    def in_order(self):
+        """Yield items by in-order traversal."""
+        if not self.root:
+            return
+        for item in self.root.in_order():
+            yield item
+
+    def pre_order(self):
+        """Yield items by pre-order traversal."""
+        if not self.root:
+            return
+        for item in self.root.pre_order():
+            yield item
 
 
 
