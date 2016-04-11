@@ -35,6 +35,7 @@ References:
     - size(): Returns int signifying number of values stored in tree.
     - depth(): Returns int signifying how many levels deep the tree is.
     - balance(): Returns int signifying whether or not the left and right sides of the tree have an even depth.
+    - delete(): Remove node from tree.
 
 
   Traversals:

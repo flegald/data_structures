@@ -233,6 +233,12 @@ class Bst(object):
         elif parent.right == node and node.left:
             parent.right = node.left
 
+    def _multiple_children_delete(self, node):
+        parent = node.parent
+        if parent.left == node:
+            node.right.left = node.left
+            parent.left = node.right
+
     def delete(self, val):
         """Delete a node from tree."""
         if not self.root:
@@ -244,6 +250,8 @@ class Bst(object):
             self._delete_leaf(to_delete)
         elif not to_delete.right or not to_delete.left:
             self._delete_one_descendant(to_delete)
+        else:
+            self._multiple_children_delete(to_delete)
 
 
 

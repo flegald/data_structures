@@ -364,6 +364,16 @@ def test_one_desc_right_right(bst_right_left):
     assert bst_right_left.root.right.val == 11
 
 
+def test_easy_two_children(bst):
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(13)
+    bst.insert(17)
+
+    bst.delete(15)
+    assert bst.root.left.left.val == 13
+
+
 
 
 
