@@ -55,6 +55,11 @@ class Bst(object):
 
     def insert(self, val):
         """Insert into tree."""
+        try:
+            int(val)
+        except ValueError:
+            print('Please type in a number')
+            return
         node = Node(val)
         if self.root is None:
             self.root = node
@@ -98,7 +103,7 @@ class Bst(object):
                 else:
                     return False
 
-    def size(self):
+    def tree_size(self):
         """Return size of list."""
         return self.size
 

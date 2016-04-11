@@ -131,6 +131,10 @@ def test_insert_duplicate(bst):
     assert bst.root.left is None and bst.root.right is None
 
 
+def test_fail_insert(bst):
+    assert not bst.insert("string")
+
+
 # Contains method tests
 
 def test_is_it_in_there(bst_with_stuff):
@@ -152,12 +156,12 @@ def test_not_there_empty(bst):
 
 def test_size_with_stuff(bst_with_stuff):
     """Test."""
-    assert bst_with_stuff.size() == 20
+    assert bst_with_stuff.tree_size() == 20
 
 
 def test_size_empty(bst):
     """Test."""
-    assert bst.size() == 0
+    assert bst.tree_size() == 0
 
 
 # Depth method tests
