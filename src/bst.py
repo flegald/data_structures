@@ -216,6 +216,9 @@ class Bst(object):
                 queue.appendleft(current.right)
 
     def _delete_leaf(self, node):
+        if self.root == node:
+            self.root = None
+            return
         parent_node = node.parent
         if parent_node.left == node:
             parent_node.left = None

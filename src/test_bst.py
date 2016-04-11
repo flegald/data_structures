@@ -48,6 +48,7 @@ def bst_with_stuff():
 
 @pytest.fixture()
 def bst_left_right():
+    """Create BST with left right nodes."""
     from bst import Bst
     bst = Bst()
     bst.insert(10)
@@ -60,6 +61,7 @@ def bst_left_right():
 
 @pytest.fixture()
 def bst_right_left():
+    """Create BST with right left nodes."""
     from bst import Bst
     bst = Bst()
     bst.insert(10)
@@ -68,6 +70,7 @@ def bst_right_left():
     bst.insert(12)
     bst.insert(11)
     return bst
+
 
 # Node constructor test
 
@@ -211,7 +214,7 @@ def test_bst_depth_smaller(bst):
     assert bst.depth() == 2
 
 
-# Test Balance
+# Balance method tests
 
 def test_empty_balance(bst):
     """Test balance on empty tree."""
@@ -247,7 +250,7 @@ def test_more_nodes(bst):
     assert bst.balance() == 1
 
 
-# In order traversal tets
+# In order traversal tests
 
 def test_empty_in_order(bst):
     """Test empty in_order."""
@@ -278,7 +281,7 @@ def test_pre_order_with_stuff(bst):
     bst.insert(3)
     assert list(bst.pre_order()) == [4, 2, 1, 3]
 
-# Post ordered traversal
+# Post ordered traversal tests
 
 
 def test_post_order_empty(bst):
@@ -295,7 +298,7 @@ def test_post_order_with_stuff(bst):
     assert list(bst.post_order()) == [1, 3, 2, 4]
 
 
-# Breadth first traversal
+# Breadth first traversal tests
 
 def test_empty_breadth(bst):
     """Test empty breadth first."""
@@ -311,7 +314,15 @@ def test_breadth_with_stuff(bst):
     bst.insert(5)
     assert list(bst.breadth_first()) == [4, 2, 5, 1, 3]
 
-# Delete method
+
+# Delete method tests
+
+def test_size_after_delete(bst):
+    """Test size of tree after delete."""
+    bst.insert(4)
+    assert bst.size == 1
+    bst.delete(4)
+    assert bst.size == 0
 
 
 def test_search_help_empty(bst):
@@ -324,7 +335,7 @@ def test_help_search_with_stuff(bst):
     bst.insert(1)
     bst.insert(2)
     bst.insert(4)
-    assert bst._search(4) 
+    assert bst._search(4)
 
 
 def test_delete_empty(bst):
@@ -344,27 +355,33 @@ def test_delete_leaf(bst):
     bst.delete(2)
     assert not bst.root.left
 
+
 def test_one_desc_left_left(bst_left_right):
+    """Test delete left child."""
     bst_left_right.delete(6)
     assert bst_left_right.root.left.val == 4
 
 
-def test_one_desc_right_right(bst_left_right):
+def test_one_desc_right_right1(bst_left_right):
+    """Test delete right child."""
     bst_left_right.delete(11)
     assert bst_left_right.root.right.val == 12
 
 
-def test_one_desc_right_right(bst_right_left):
+def test_one_desc_right_right2(bst_right_left):
+    """Test delete right child."""
     bst_right_left.delete(6)
     assert bst_right_left.root.left.val == 7
 
 
-def test_one_desc_right_right(bst_right_left):
+def test_one_desc_right_right3(bst_right_left):
+    """Test delete right child."""
     bst_right_left.delete(12)
     assert bst_right_left.root.right.val == 11
 
 
 def test_easy_two_children(bst):
+    """Test delete two node with two children."""
     bst.insert(20)
     bst.insert(15)
     bst.insert(13)
