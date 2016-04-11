@@ -2,7 +2,6 @@
 from collections import deque
 
 
-
 class Node(object):
     """Binary Search Tree."""
 
@@ -130,6 +129,29 @@ class Bst(object):
                 else:
                     return False
 
+    def _search(self, val):
+        """Return node for delete."""
+        if not self.root:
+            return None
+        elif val == self.root.val:
+            return self.root
+        else:
+            current = self.root
+            while True:
+                if current.val == val:
+                    return current
+                elif val < current.val:
+                    if current.left:
+                        current = current.left
+                    else:
+                        break
+                else:
+                    if current.right:
+                        current = current.right
+                    else:
+                        break
+            return None
+
     def size(self):
         """Return size of list."""
         return self.size
@@ -192,5 +214,69 @@ class Bst(object):
                 queue.appendleft(current.left)
             if current.right:
                 queue.appendleft(current.right)
+
+    def _delete_leaf(self, node):
+        if self.root == node:
+            self.root = None
+            return
+        parent_node = node.parent
+        if parent_node.left == node:
+            parent_node.left = None
+        else:
+            parent_node.right = None
+
+    def _delete_one_descendant(self, node):
+        parent = node.parent
+        if parent.left == node and node.right:
+            parent.left = node.right
+        elif parent.left == node and node.left:
+            parent.left = node.left
+        elif parent.right == node and node.right:
+            parent.right = node.right
+        elif parent.right == node and node.left:
+            parent.right = node.left
+
+    def _multiple_children_delete(self, node):
+        parent = node.parent
+        if parent.left == node:
+            target = node.right
+            if target.left:
+                while target.left:
+                    target = target.left
+                node.val = target.val
+                target.parent = None
+            else:
+                node.val = target.val
+                node.right = target.right
+                target.parent = None
+        else:
+            target = node.left
+            if target.right:
+                while target.right:
+                    target = target.right
+                node.val = target.val
+                target.parent = None
+            else:
+                node.val = target.val
+                node.left = target.left
+                target.parent = None
+
+    def delete(self, val):
+        """Delete a node from tree."""
+        if not self.root:
+            return None
+        to_delete = self._search(val)
+        if not to_delete:
+            return None
+        elif not to_delete.right and not to_delete.left:
+            self._delete_leaf(to_delete)
+        elif not to_delete.right or not to_delete.left:
+            self._delete_one_descendant(to_delete)
+        else:
+            self._multiple_children_delete(to_delete)
+        self.size -= 1
+
+
+
 
 
