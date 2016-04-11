@@ -104,8 +104,6 @@ class Bst(object):
 
     def depth(self):
         """Return the number of levels in the tree."""
-        if not self.root:
-            return 0
         return self.root.depth()
 
     def balance(self):
