@@ -386,9 +386,44 @@ def test_easy_two_children(bst):
     bst.insert(15)
     bst.insert(13)
     bst.insert(17)
-
     bst.delete(15)
     assert bst.root.left.left.val == 13
+
+
+def test_left_delete_many(bst):
+    """Testing easiest 2 children delete case."""
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(17)
+    bst.insert(14)
+    bst.insert(16)
+    bst.insert(18)
+    bst.delete(15)
+    assert bst.root.left.val == 16
+
+
+def test_left_delete_few(bst):
+    """Testing easier 2 children delete case."""
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(17)
+    bst.insert(14)
+    bst.insert(18)
+    bst.delete(15)
+    assert bst.root.left.val == 17
+
+
+def test_right_delete_many(bst):
+    """Testing easiest 2 children delete case."""
+    bst.insert(7)
+    bst.insert(14)
+    bst.insert(19)
+    bst.insert(10)
+    bst.insert(11)
+    bst.delete(14)
+    assert bst.root.right.val == 11
+
+
 
 
 

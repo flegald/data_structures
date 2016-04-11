@@ -239,8 +239,27 @@ class Bst(object):
     def _multiple_children_delete(self, node):
         parent = node.parent
         if parent.left == node:
-            node.right.left = node.left
-            parent.left = node.right
+            target = node.right
+            if target.left:
+                while target.left:
+                    target = target.left
+                node.val = target.val
+                target.parent = None
+            else:
+                node.val = target.val
+                node.right = target.right
+                target.parent = None
+        else:
+            target = node.left
+            if target.right:
+                while target.right:
+                    target = target.right
+                node.val = target.val
+                target.parent = None
+            else:
+                node.val = target.val
+                node.left = target.left
+                target.parent = None
 
     def delete(self, val):
         """Delete a node from tree."""
