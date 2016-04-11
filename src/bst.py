@@ -251,13 +251,11 @@ class Bst(object):
             return None
         elif not to_delete.right and not to_delete.left:
             self._delete_leaf(to_delete)
-            self.size -= 1
         elif not to_delete.right or not to_delete.left:
             self._delete_one_descendant(to_delete)
-            self.size -= 1
         else:
             self._multiple_children_delete(to_delete)
-            self.size -= 1
+        self.size -= 1
 
 
 
