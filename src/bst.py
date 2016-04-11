@@ -130,6 +130,26 @@ class Bst(object):
                 else:
                     return False
 
+    def _search(self, val):
+        """Return node for delete."""
+        current = self.root
+        if val == self.root.val:
+            return self.root
+        else:
+            while True:
+                if current.val == val:
+                    return current
+                elif val < current.val:
+                    if current.left:
+                        current = current.left
+                    else:
+                        return None
+                else:
+                    if current.right:
+                        current = current.right
+                    else:
+                        return None
+
     def size(self):
         """Return size of list."""
         return self.size
@@ -192,5 +212,14 @@ class Bst(object):
                 queue.appendleft(current.left)
             if current.right:
                 queue.appendleft(current.right)
+
+    def delete(self, value):
+        """Delete a node from tree."""
+        if not self.root:
+            return None
+        to_delete = self._search(value)
+        if not to_delete:
+            return None
+
 
 

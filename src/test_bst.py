@@ -288,4 +288,16 @@ def test_breadth_with_stuff(bst):
     bst.insert(5)
     assert list(bst.breadth_first()) == [4, 2, 5, 1, 3]
 
+# Delete method
+
+
+def test_delete_empty(bst):
+    """Test empty delete."""
+    assert not bst.delete(1)
+
+
+def test_return_none_with_stuff(bst_with_stuff):
+    """Test return None when val not found."""
+    assert not bst_with_stuff.delete(9000)
+
 
