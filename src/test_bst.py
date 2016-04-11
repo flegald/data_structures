@@ -46,6 +46,29 @@ def bst_with_stuff():
     return bst
 
 
+@pytest.fixture()
+def bst_left_right():
+    from bst import Bst
+    bst = Bst()
+    bst.insert(10)
+    bst.insert(6)
+    bst.insert(4)
+    bst.insert(11)
+    bst.insert(12)
+    return bst
+
+
+@pytest.fixture()
+def bst_right_left():
+    from bst import Bst
+    bst = Bst()
+    bst.insert(10)
+    bst.insert(6)
+    bst.insert(7)
+    bst.insert(12)
+    bst.insert(11)
+    return bst
+
 # Node constructor test
 
 def test_node_constructor():
@@ -291,6 +314,19 @@ def test_breadth_with_stuff(bst):
 # Delete method
 
 
+def test_search_help_empty(bst):
+    """Test Help search method on empty."""
+    assert not bst._search(1)
+
+
+def test_help_search_with_stuff(bst):
+    """Test help search method with stuff."""
+    bst.insert(1)
+    bst.insert(2)
+    bst.insert(4)
+    assert bst._search(4) 
+
+
 def test_delete_empty(bst):
     """Test empty delete."""
     assert not bst.delete(1)
@@ -299,5 +335,35 @@ def test_delete_empty(bst):
 def test_return_none_with_stuff(bst_with_stuff):
     """Test return None when val not found."""
     assert not bst_with_stuff.delete(9000)
+
+
+def test_delete_leaf(bst):
+    """Test delete leaf."""
+    bst.insert(4)
+    bst.insert(2)
+    bst.delete(2)
+    assert not bst.root.left
+
+def test_one_desc_left_left(bst_left_right):
+    bst_left_right.delete(6)
+    assert bst_left_right.root.left.val == 4
+
+
+def test_one_desc_right_right(bst_left_right):
+    bst_left_right.delete(11)
+    assert bst_left_right.root.right.val == 12
+
+
+def test_one_desc_right_right(bst_right_left):
+    bst_right_left.delete(6)
+    assert bst_right_left.root.left.val == 7
+
+
+def test_one_desc_right_right(bst_right_left):
+    bst_right_left.delete(12)
+    assert bst_right_left.root.right.val == 11
+
+
+
 
 

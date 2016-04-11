@@ -2,7 +2,6 @@
 from collections import deque
 
 
-
 class Node(object):
     """Binary Search Tree."""
 
@@ -132,10 +131,12 @@ class Bst(object):
 
     def _search(self, val):
         """Return node for delete."""
-        current = self.root
-        if val == self.root.val:
+        if not self.root:
+            return None
+        elif val == self.root.val:
             return self.root
         else:
+            current = self.root
             while True:
                 if current.val == val:
                     return current
@@ -143,12 +144,13 @@ class Bst(object):
                     if current.left:
                         current = current.left
                     else:
-                        return None
+                        break
                 else:
                     if current.right:
                         current = current.right
                     else:
-                        return None
+                        break
+            return None
 
     def size(self):
         """Return size of list."""
@@ -213,13 +215,37 @@ class Bst(object):
             if current.right:
                 queue.appendleft(current.right)
 
-    def delete(self, value):
+    def _delete_leaf(self, node):
+        parent_node = node.parent
+        if parent_node.left == node:
+            parent_node.left = None
+        else:
+            parent_node.right = None
+
+    def _delete_one_descendant(self, node):
+        parent = node.parent
+        if parent.left == node and node.right:
+            parent.left = node.right
+        elif parent.left == node and node.left:
+            parent.left = node.left
+        elif parent.right == node and node.right:
+            parent.right = node.right
+        elif parent.right == node and node.left:
+            parent.right = node.left
+
+    def delete(self, val):
         """Delete a node from tree."""
         if not self.root:
             return None
-        to_delete = self._search(value)
+        to_delete = self._search(val)
         if not to_delete:
             return None
+        elif not to_delete.right and not to_delete.left:
+            self._delete_leaf(to_delete)
+        elif not to_delete.right or not to_delete.left:
+            self._delete_one_descendant(to_delete)
+
+
 
 
 
