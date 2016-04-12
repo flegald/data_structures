@@ -1,5 +1,8 @@
 """Implementation of Binary Search Tree."""
 from collections import deque
+import random
+import time
+import io
 
 
 class Node(object):
@@ -74,6 +77,27 @@ class Node(object):
             for item in self.right.post_order():
                 yield item
         yield self.val
+
+    # Dot graph stuff
+
+    def _get_dot(self):
+        """Recursively prepare a dot graph entry for this node."""
+        if self.left is not None:
+            yield "\t%s -> %s;" % (self.val, self.left.val)
+            for i in self.left._get_dot():
+                yield i
+        elif self.right is not None:
+            r = random.randint(0, 1e9)
+            yield "\tnull%s [shape=point];" % r
+            yield "\t%s -> null%s;" % (self.val, r)
+        if self.right is not None:
+            yield "\t%s -> %s;" % (self.val, self.right.val)
+            for i in self.right._get_dot():
+                yield i
+        elif self.left is not None:
+            r = random.randint(0, 1e9)
+            yield "\tnull%s [shape=point];" % r
+            yield "\t%s -> null%s;" % (self.val, r)
 
 
 class Bst(object):
@@ -275,6 +299,42 @@ class Bst(object):
         else:
             self._multiple_children_delete(to_delete)
         self.size -= 1
+
+    def get_dot(self):
+        """Return the tree with root 'self' as a dot graph for visualization."""
+        return "digraph G{\n%s}" % ("" if self.root.val is None else (
+            "\t%s;\n%s\n" % (
+                self.root.val,
+                "\n".join(self.root._get_dot())
+            )
+        ))
+
+
+if __name__ == "__main__":
+    import subprocess
+    vals = random.sample(range(1000), 100)
+    bst = Bst()
+    for val in vals:
+        bst.insert(val)
+    # random_val = random.choice(vals)
+    # times = []
+    # for i in range(1000):
+    #     start = time.time()
+    #     bst.contains(random_val)
+    #     time_passed = time.time() - start
+    #     times.append((time_passed, random_val))
+    # times.sort()
+    # print("Fastest search: {} seconds for {}".format(times[0][0], times[0][-1]))
+    # print("Slowest search: {} seconds for {}".format(times[-1][0], times[-1][-1]))
+    # import pdb; pdb.set_trace()
+    g = bst.get_dot()
+    g = g.encode('utf-8')
+    sub = subprocess.Popen(['dot', '-Tpng'], stdin=subprocess.PIPE)
+    sub.communicate(g)
+
+
+
+
 
 
 
