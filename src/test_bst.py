@@ -439,16 +439,22 @@ def test_node_balance_method(bst):
     assert bst.root.left.check_balance() == 1
 
 
+def test_rotate_right_root(bst):
+    """Test easy left balance."""
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(12)
+    assert bst.root.val == 15 and bst.root.right.val == 20
 
 
-
-# def test_easy_left_balance(bst):
-#     """Test easy left balance."""
-#     bst.insert(20)
-#     bst.insert(15)
-#     bst.insert(12)
-#     bst.rebalance()
-#     assert bst.root.val == 15 and bst.root.left.val == 12 and bst.root.right.val == 20
+def test_rotate_right_not_root(bst):
+    """Test rotate right on not root."""
+    bst.insert(50)
+    bst.insert(51)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(12)
+    assert bst.root.val == 50 and bst.root.left.val == 15 and bst.root.left.right.val == 20
 
 
 

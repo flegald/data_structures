@@ -130,9 +130,9 @@ class Bst(object):
         current = node
         while True:
             if current.check_balance() >= 2:
-                print('rotate left')
+                self.rotate_right(current)
             elif current.check_balance() <= -2:
-                print('rotate right')
+                print('rotate left')
             else:
                 print('balanced')
 
@@ -140,6 +140,15 @@ class Bst(object):
                 break
             else:
                 current = current.parent
+
+    def rotate_right(self, node):
+        """Rotate unbalanced node to right side of left child."""
+        if self.root == node:
+            node.left.right = node
+            self.root = node.left
+        else:
+            node.parent.left = node.left
+            node.left.right = node
 
     def insert(self, val):
         """Insert into tree."""
@@ -162,6 +171,7 @@ class Bst(object):
                         current = current.left
                     else:
                         current.left = node
+                        self.tree_climb(node)
                         self.size += 1
                         break
                 else:
@@ -169,9 +179,9 @@ class Bst(object):
                         current = current.right
                     else:
                         current.right = node
+                        self.tree_climb(node)
                         self.size += 1
                         break
-        self.tree_climb(node)
 
     def contains(self, val):
         """Return if node is contained in bst."""
@@ -322,7 +332,6 @@ class Bst(object):
                 node.left = target.left
                 target.parent = None
 
-
     def delete(self, val):
         """Delete a node from tree."""
         if not self.root:
@@ -352,8 +361,12 @@ if __name__ == "__main__":
     import subprocess
     vals = random.sample(range(1000), 100)
     bst = Bst()
-    for val in vals:
-        bst.insert(val)
+    # for val in vals:
+    #     bst.insert(val)
+    bst.insert(50)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(12)
     # random_val = random.choice(vals)
     # times = []
     # for i in range(1000):
@@ -364,11 +377,11 @@ if __name__ == "__main__":
     # times.sort()
     # print("Fastest search: {} seconds for {}".format(times[0][0], times[0][-1]))
     # print("Slowest search: {} seconds for {}".format(times[-1][0], times[-1][-1]))
-    # g = bst.get_dot()
-    # g = g.encode('utf-8')
-    # sub = subprocess.Popen(['dot', '-Tpng'], stdin=subprocess.PIPE)
-    # sub.communicate(g)
-    bst.breadth_first()
+    g = bst.get_dot()
+    g = g.encode('utf-8')
+    sub = subprocess.Popen(['dot', '-Tpng'], stdin=subprocess.PIPE)
+    sub.communicate(g)
+    # bst.breadth_first()
 
 
 
