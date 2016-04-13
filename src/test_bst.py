@@ -457,6 +457,13 @@ def test_rotate_right_not_root(bst):
     assert bst.root.val == 50 and bst.root.left.val == 15 and bst.root.left.right.val == 20
 
 
+def test_straighten_out_left_root(bst):
+    """Test alligator left with root."""
+    bst.insert(55)
+    bst.insert(20)
+    bst.insert(22)
+    assert bst.root.val == 22 and bst.root.left.val == 20 and bst.root.right.val == 55
+
 
 
 

@@ -80,14 +80,13 @@ class Node(object):
 
     def check_balance(self):
         """Get balance of current node."""
+        import pdb; pdb.set_trace()
         counter = 0
         current = self
 
         while current.left:
             counter += 1
             current = current.left
-
-        current = self
 
         while current.right:
             counter -= 1
@@ -143,12 +142,20 @@ class Bst(object):
 
     def rotate_right(self, node):
         """Rotate unbalanced node to right side of left child."""
+        if not node.left.left:
+            self.straighten_for_rotate_right(node)
         if self.root == node:
             node.left.right = node
             self.root = node.left
         else:
             node.parent.left = node.left
             node.left.right = node
+
+    def straighten_for_rotate_right(self, node):
+        """Prepare nodes to be rotated right."""
+        node.left.right.parent = node
+        node.left.parent = node.left.right
+        node.left = node.left.right
 
     def insert(self, val):
         """Insert into tree."""
@@ -365,8 +372,7 @@ if __name__ == "__main__":
     #     bst.insert(val)
     bst.insert(50)
     bst.insert(20)
-    bst.insert(15)
-    bst.insert(12)
+    bst.insert(22)
     # random_val = random.choice(vals)
     # times = []
     # for i in range(1000):
