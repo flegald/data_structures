@@ -1,7 +1,10 @@
 An example of classic data structures.
 
-As a weighted graph, this data structure associated a weight integer as the third tuple item of any
-edge along with the two connected nodes.
+As a weighted graph, this data structure associates a weight integer or float 
+as the third tuple item of any edge along with the two connected nodes.
+
+Abstractly, the weight number may represents distance, probability or some other
+numerical relationship between the values at two nodes.
 
 #GRAPH:
   Methods:
@@ -9,7 +12,7 @@ edge along with the two connected nodes.
   - list_nodes():  Return a list of keys present in the graph.
   - list_edges():  Return a list of edges present in the graph, including the weight of the edge.
   - add_node(key):  Add a new node to the graph.
-  - add_edge(key, val):  Add a weighted edge between nodes.  Add any nodes not present as nodes in the graph.
+  - add_edge(key, val, weight):  Add a weighted edge between nodes.  Add any nodes not present as nodes in the graph.
   - del_node(key):  Remove an existing node from graph.  Remove any edges containing this node.
   - del_edge(key, val):  Remove an existing edge from two nodes.
   - has_node(key):  Return True if node exists, False if node not present.

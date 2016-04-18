@@ -49,6 +49,8 @@ class Graph(object):
 
     def add_edge(self, key, val, weight):
         """Add edge between nodes."""
+        if not isinstance(weight, (int, float)):
+            raise TypeError('Weight argument must be an integer or float.')
         self.g.setdefault(key, {})[val] = weight
         self.g.setdefault(val, {})
 

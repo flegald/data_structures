@@ -75,6 +75,13 @@ def test_add_edge_two_existing(instance):
     assert sorted(instance.list_nodes()) == NODES
 
 
+def test_add_edge_type(instance):
+    """Test that types other than floats and ints throw the expected error."""
+    for val in (None, "s", [1], (1,), {1: 1}):
+        with pytest.raises(TypeError):
+            instance.add_edge('A', 'B', val)
+
+
 def test_del_node(instance):
     """Test del_node method."""
     expected_nodes = list(NODES)
