@@ -285,7 +285,7 @@ def test_pre_order_with_stuff(bst):
     bst.insert(3)
     assert list(bst.pre_order()) == [4, 2, 1, 3]
 
-# Post ordered traversal tests
+# # Post ordered traversal tests
 
 
 def test_post_order_empty(bst):
@@ -302,7 +302,7 @@ def test_post_order_with_stuff(bst):
     assert list(bst.post_order()) == [1, 3, 2, 4]
 
 
-# Breadth first traversal tests
+# # Breadth first traversal tests
 
 def test_empty_breadth(bst):
     """Test empty breadth first."""
@@ -319,7 +319,7 @@ def test_breadth_with_stuff(bst):
     assert list(bst.breadth_first()) == [4, 2, 5, 1, 3]
 
 
-# Delete method tests
+# # Delete method tests
 
 def test_size_after_delete(bst):
     """Test size of tree after delete."""

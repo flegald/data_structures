@@ -80,13 +80,14 @@ class Node(object):
 
     def check_balance(self):
         """Get balance of current node."""
-        import pdb; pdb.set_trace()
         counter = 0
         current = self
 
         while current.left:
             counter += 1
             current = current.left
+
+        current = self
 
         while current.right:
             counter -= 1
@@ -370,9 +371,10 @@ if __name__ == "__main__":
     bst = Bst()
     # for val in vals:
     #     bst.insert(val)
-    bst.insert(50)
-    bst.insert(20)
-    bst.insert(22)
+    bst.insert(4)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(1)
     # random_val = random.choice(vals)
     # times = []
     # for i in range(1000):
