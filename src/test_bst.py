@@ -157,6 +157,10 @@ def test_insert_duplicate(bst):
     assert bst.root.left is None and bst.root.right is None
 
 
+def test_fail_insert(bst):
+    assert not bst.insert("string")
+
+
 # Contains method tests
 
 def test_is_it_in_there(bst_with_stuff):
@@ -178,12 +182,12 @@ def test_not_there_empty(bst):
 
 def test_size_with_stuff(bst_with_stuff):
     """Test."""
-    assert bst_with_stuff.size == 20
+    assert bst_with_stuff.tree_size() == 20
 
 
 def test_size_empty(bst):
     """Test."""
-    assert bst.size == 0
+    assert bst.tree_size() == 0
 
 
 # Depth method tests
@@ -413,6 +417,45 @@ def test_right_delete_many(bst):
         bst.insert(i)
     bst.delete(14)
     assert bst.root.right.val == 11
+
+# Balance tests
+
+
+def test_node_balance_method(bst):
+    """Test balance method in Node object."""
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(12)
+    assert bst.root.check_balance() == 2
+    assert bst.root.left.check_balance() == 1
+
+
+def test_rotate_right_root(bst):
+    """Test easy left balance."""
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(12)
+    assert bst.root.val == 15 and bst.root.right.val == 20
+
+
+def test_rotate_right_not_root(bst):
+    """Test rotate right on not root."""
+    bst.insert(50)
+    bst.insert(51)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(12)
+    assert bst.root.val == 50 and bst.root.left.val == 15 and bst.root.left.right.val == 20
+
+
+def test_straighten_out_left_root(bst):
+    """Test alligator left with root."""
+    bst.insert(55)
+    bst.insert(20)
+    bst.insert(22)
+    assert bst.root.val == 22 and bst.root.left.val == 20 and bst.root.right.val == 55
+
+
 
 
 
