@@ -29,3 +29,24 @@ References:
   - Python queue data structure:  https://docs.python.org/3/library/queue.html
   - Wikipedia Dijkstra's algorithm:  https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
   - Wikipedia A* algorithm:  https://en.wikipedia.org/wiki/A*_search_algorithm
+
+
+#BINARY SEARCH TREE
+  (2016/10/4)
+  Methods:
+
+    - BST(): Instantiate a Binary Search Tree object.
+    - insert(): Add node object to tree.
+    - contains(): Checks whether a given value is in the tree.
+    - size(): Returns int signifying number of values stored in tree.
+    - depth(): Returns int signifying how many levels deep the tree is.
+    - balance(): Returns int signifying whether or not the left and right sides of the tree have an even depth.
+    - delete(): Remove node from tree.
+
+
+  Traversals:
+
+  - in_order(): Traverses list in order of left, self, right.
+  - pre_order(): Traverses list in order of self, left, right.
+  - post_order(): Traverses list in order of left, right, self.
+  - breath_first_search(): Traverses list in breath first order.
