@@ -1,8 +1,6 @@
 """Hash table implementation."""
 
 
-
-
 class HashTable(object):
     """Hash Table."""
 
@@ -32,8 +30,6 @@ class HashTable(object):
             self._table[hashed].append((hashed, val))
         else:
             self._table[hashed] = [(hashed, val)]
-
-    def 
 
     def _hashing(self, string, table_size):
         """Hash function."""
