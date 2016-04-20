@@ -44,3 +44,9 @@ References:
   - pre_order(): Traverses list in order of self, left, right.
   - post_order(): Traverses list in order of left, right, self.
   - breath_first_search(): Traverses list in breath first order.
+
+# HASH TABLE
+  (2016/19/4)
+
+    - get(): Retrieve a value
+    - set(): Add item to table
