@@ -156,7 +156,6 @@ class Bst(object):
         """Prepare nodes to be rotated right."""
         node.left.right.parent = node
         node.left.parent = node.left.right
-        node.left = node.left.right
 
     def insert(self, val):
         """Insert into tree."""
