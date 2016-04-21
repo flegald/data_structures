@@ -4,6 +4,8 @@ from random import randint
 
 def merge_sort(alist):
     """Merge sort function."""
+    if not alist:
+        return
 
     if len(alist) > 1:
         midpoint = len(alist) // 2
@@ -19,6 +21,8 @@ def merge_sort(alist):
         k = 0
 
         while i < len(listA) and j < len(listB):
+            if isinstance(listA[i], str) or isinstance(listB[j], str):
+                raise TypeError("Inputs cannot be strings.")
 
             if listA[i] < listB[j]:
                 alist[k] = listA[i]

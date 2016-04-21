@@ -386,44 +386,35 @@ def test_one_desc_right_right3(bst_right_left):
 
 def test_easy_two_children(bst):
     """Test delete two node with two children."""
-    bst.insert(20)
-    bst.insert(15)
-    bst.insert(13)
-    bst.insert(17)
-    bst.delete(15)
+    nums = [20, 15, 13, 17, 15]
+    for i in nums:
+        bst.insert(i)
     assert bst.root.left.left.val == 13
 
 
 def test_left_delete_many(bst):
     """Testing easiest 2 children delete case."""
-    bst.insert(20)
-    bst.insert(15)
-    bst.insert(17)
-    bst.insert(14)
-    bst.insert(16)
-    bst.insert(18)
+    nums = [20, 15, 17, 14, 16, 18]
+    for i in nums:
+        bst.insert(i)
     bst.delete(15)
     assert bst.root.left.val == 16
 
 
 def test_left_delete_few(bst):
     """Testing easier 2 children delete case."""
-    bst.insert(20)
-    bst.insert(15)
-    bst.insert(17)
-    bst.insert(14)
-    bst.insert(18)
+    nums = [20, 15, 17, 14, 18]
+    for i in nums:
+        bst.insert(i)
     bst.delete(15)
     assert bst.root.left.val == 17
 
 
 def test_right_delete_many(bst):
     """Testing easiest 2 children delete case."""
-    bst.insert(7)
-    bst.insert(14)
-    bst.insert(19)
-    bst.insert(10)
-    bst.insert(11)
+    nums = [7, 14, 19, 10, 11]
+    for i in nums:
+        bst.insert(i)
     bst.delete(14)
     assert bst.root.right.val == 11
 

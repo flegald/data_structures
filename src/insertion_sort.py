@@ -5,7 +5,11 @@ from random import randint
 
 def insertion_sort(alist):
     """Return sorted list using insertion sort algorithm."""
+    if not alist:
+        return
     for i in range(1, len(alist)):
+        if isinstance(alist[i], str):
+            raise TypeError("List cannot include strings")
         current_value = alist[i]
         index = i
 
