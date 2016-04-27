@@ -50,3 +50,10 @@ References:
 
     - get(): Retrieve a value
     - set(): Add item to table
+
+# TRIE
+(2016/27/4)
+
+- Trie(): Instantiate a Trie object
+- insert(): Add am edge to the trie
+- contains: Check to see if a string value is in the trie
