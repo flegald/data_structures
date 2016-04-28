@@ -29,19 +29,14 @@ class Trie(object):
                 return False
         return '$' in x
 
-    word = ''
-    edge = self._data
-    count = 0
-
-    def depth_first(self, start):
-        """Traversal."""
-        for key in edge:
-            if start[count] == edge.keys():
-                if key == '$':
-                    yield word
-                else:
-                    word += key
-                    self.depth_first(edge[key])
-        count += 1
+    def traversal(self, start=None, word=''):
+        """Generator that yields all the words in the Trie."""
+        start = start or self._data
+        for key in start.keys():
+            if key == '$':
+                yield word
+            else:
+                for item in self.traversal(start[key], word + key):
+                    yield item
 
     __contains__ = contains
