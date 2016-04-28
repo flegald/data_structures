@@ -1,6 +1,10 @@
 """Test file for Trie."""
 import pytest
 
+
+WORDS = ['cart', 'carp', 'carton', 'car', 'cartons']
+
+
 @pytest.fixture()
 def trie():
     """Trie fixture."""
@@ -44,6 +48,27 @@ def test_symbol_insert(trie):
     """Test error raised with symbols."""
     with pytest.raises(TypeError):
         trie.insert("lett#ers")
+
+# Traversal Tests
+
+
+@pytest.fixture()
+def car_trie():
+    """Filled trie."""
+    from trie import Trie
+    t = Trie()
+    for word in WORDS:
+        t.insert(word)
+    return t
+
+
+def test_all_car(car_trie):
+    """Test all the items in our trie."""
+    for word in car_trie.traversal():
+        assert word in WORDS
+
+
+
 
 
 

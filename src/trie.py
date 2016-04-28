@@ -29,5 +29,14 @@ class Trie(object):
                 return False
         return '$' in x
 
-    __contains__ = contains
+    def traversal(self, start=None, word=''):
+        """Generator that yields all the words in the Trie."""
+        start = start or self._data
+        for key in start.keys():
+            if key == '$':
+                yield word
+            else:
+                for item in self.traversal(start[key], word + key):
+                    yield item
 
+    __contains__ = contains
