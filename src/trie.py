@@ -29,5 +29,19 @@ class Trie(object):
                 return False
         return '$' in x
 
-    __contains__ = contains
+    word = ''
+    edge = self._data
+    count = 0
 
+    def depth_first(self, start):
+        """Traversal."""
+        for key in edge:
+            if start[count] == edge.keys():
+                if key == '$':
+                    yield word
+                else:
+                    word += key
+                    self.depth_first(edge[key])
+        count += 1
+
+    __contains__ = contains
