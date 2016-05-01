@@ -57,3 +57,6 @@ References:
 - Trie(): Instantiate a Trie object
 - insert(): Add am edge to the trie
 - contains: Check to see if a string value is in the trie
+- traversal(): Traverses the Trie
+- autocomplete(): Shows top four results of the input value.
+Credit is due to Will Weathorford, Hannah Krager, AJ Wohlfert as we looked at their tries for inspiration.

@@ -68,6 +68,36 @@ def test_all_car(car_trie):
         assert word in WORDS
 
 
+def test_midway(car_trie):
+    """Test traversal halfway through trie."""
+    for word in car_trie.traversal('cart'):
+        assert word != "carp" or word != 'car'
+
+# Autocomplete Tests
+
+
+def test_correct(car_trie):
+    """Testing autocomplete on Trie."""
+    assert car_trie.autocomplete('c') == ['car', 'carp', 'cart', 'carton']
+
+
+def test_autocomplete_full_word(car_trie):
+    """Testing autocomplete wioth full word."""
+    assert car_trie.autocomplete('carton') == ['carton', 'cartons']
+
+
+def test_error(car_trie):
+    """Test autocomplette raises error if value is not in Trie."""
+    with pytest.raises(KeyError):
+        car_trie.autocomplete('bob')
+
+
+
+
+
+
+
+
 
 
 
