@@ -1,5 +1,11 @@
 An example of classic data structures.
 
+#PRIORITY QUEUE:
+- PriorityQueue(): Instantiate a PriorityQueue.
+-insert(): Add a value and priority level to the structure.
+-pop(): Remove and return the next most important calue in the structure.
+-peek(): Return the next most important value in the structure.
+
 As a weighted graph, this data structure associated a weight integer as the third tuple item of any
 edge along with the two connected nodes.
 
