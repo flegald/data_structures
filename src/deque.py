@@ -38,7 +38,7 @@ class Deque(object):
             self.length -= 1
             return head.data
         except AttributeError:
-            return None
+            raise AttributeError('The deque is empty.')
 
     def pop_left(self):
         """Remove and return tail of list."""
@@ -48,7 +48,7 @@ class Deque(object):
             self.length -= 1
             return tail.data
         except AttributeError:
-            return None
+            raise AttributeError('The deque is empty.')
 
     def peek(self):
         """See adjacent Node's value."""

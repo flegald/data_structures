@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import pytest
 """Test file for Deque list data structure."""
 
 data = ['123', '234', '345']
@@ -73,3 +74,21 @@ def test_size():
     deque.append(data[0])
     deque.append(data[1])
     assert deque.size() == 2
+
+# Testing empty deque
+
+
+def test_empty_pop():
+    """Test pop from empty returns error."""
+    from deque import Deque
+    deque = Deque()
+    with pytest.raises(AttributeError):
+        deque.pop()
+
+
+def test_empty_pop_left():
+    """Test that pop_left raises error."""
+    from deque import Deque
+    deque = Deque()
+    with pytest.raises(AttributeError):
+        deque.pop_left()
