@@ -1,29 +1,64 @@
 # -*- coding: utf-8 -*-
 """Prioityq tests."""
-
-
-DATA = [(1, 'one'), (0, 'zero'), (2, 'two')]
+import pytest
 
 
 def test_insert():
     """Test insert method."""
     from priorityq import PriorityQueue
     pq = PriorityQueue()
-    pq.insert(*DATA[0])
-    assert pq.dict[DATA[0][0]][0] == DATA[0][1]
+    pq.insert('Value', 1)
+    assert pq.dict[1] == ['Value']
+
+
+def test_pop_empty():
+    """Test pop from empty PQ raises index error."""
+    from priorityq import PriorityQueue
+    pq = PriorityQueue()
+    with pytest.raises(IndexError):
+        pq.pop()
 
 
 def test_pop():
-    """Test insert method."""
+    """Test pop method."""
     from priorityq import PriorityQueue
     pq = PriorityQueue()
-    pq.insert(*DATA[0])
-    assert pq.pop() == DATA[0][1]
+    pq.insert('Value', 1)
+    assert pq.pop() == ('Value')
+
+
+def test_pop_multiple():
+    """Test correct value is returned from a longer PQ."""
+    from priorityq import PriorityQueue
+    pq = PriorityQueue()
+    pq.insert('ValueOne', 1)
+    pq.insert('ValueTwo', 2)
+    pq.insert('ValueThree', 3)
+    assert pq.pop() == "ValueOne"
+
+
+def test_peek_empty():
+    """Test peek from empty PQ raises index error."""
+    from priorityq import PriorityQueue
+    pq = PriorityQueue()
+    with pytest.raises(IndexError):
+        pq.peek()
 
 
 def test_peek():
-    """Test insert method."""
+    """Test peek method."""
     from priorityq import PriorityQueue
     pq = PriorityQueue()
-    pq.insert(*DATA[0])
-    assert pq.peek() == DATA[0][1]
+    pq.insert('Value', 1)
+    assert pq.peek() == "Value"
+
+
+def test_peek_multiple():
+    """Test correct value is shown with a PQ of multiple values."""
+    from priorityq import PriorityQueue
+    pq = PriorityQueue()
+    pq.insert('ValueOne', 1)
+    pq.insert('ValueTwo', 2)
+    pq.insert('ValueThree', 3)
+    assert pq.peek() == "ValueOne"
+
