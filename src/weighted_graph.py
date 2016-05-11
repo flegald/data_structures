@@ -2,6 +2,10 @@
 """Create a graph type data structure."""
 import time
 import random
+try:
+    from math import inf
+except ImportError:
+    inf = float('inf')
 from collections import deque
 try:
     from itertools import izip_longest as zip_longest
@@ -45,6 +49,8 @@ class Graph(object):
 
     def add_edge(self, key, val, weight):
         """Add edge between nodes."""
+        if not isinstance(weight, (int, float)):
+            raise TypeError('Weight argument must be an integer or float.')
         self.g.setdefault(key, {})[val] = weight
         self.g.setdefault(val, {})
 
@@ -108,6 +114,82 @@ class Graph(object):
                     queue.append(item)
                 path.append(cursor)
         return path
+
+    def dijkstra(self, start, end):
+        """Dijkstra shortest path algorithm."""
+        current = start
+        unvisited = set([start])
+        visited = set()
+        distances = {key: (inf, None) for key in self.g}
+        distances[current] = (0, None)
+        while unvisited:
+            shortest_tent_dist = inf
+            next_current = None
+            for neighbor, distance in self.g[current].items():
+                tent_dist = distances[current][0] + distance
+                if neighbor not in visited:
+                    unvisited.add(neighbor)
+                    if tent_dist < shortest_tent_dist:
+                        next_current = neighbor
+                        shortest_tent_dist = tent_dist
+                if tent_dist < distances[neighbor][0]:
+                    distances[neighbor] = (tent_dist, current)
+            unvisited.discard(current)
+            visited.add(current)
+            try:
+                current = next_current or unvisited.pop()
+            except KeyError:
+                break
+        path_rev = []
+        best_prev = end
+        while best_prev is not None:
+            path_rev.append(best_prev)
+            best_prev = distances[best_prev][1]
+            # import pdb; pdb.set_trace()
+        return reversed(path_rev)
+
+    def a_star(self, start, end):
+        """A* heuristic shortest path algorithm."""
+        current = start
+        unvisited = set([start])
+        visited = set()
+        distances = {key: (inf, None) for key in self.g}
+        heur_distances = {key: (inf, None) for key in self.g}
+        distances[current] = (0, None)
+        heur_distances[current] = self._heuristic(current)
+        while unvisited:
+
+            for neighbor, distance in self.g[current].items():
+                tent_dist = distances[current][0] + distance
+                if neighbor not in visited:
+                    unvisited.add(neighbor)
+                if tent_dist < distances[neighbor][0]:
+                    distances[neighbor] = (tent_dist, current)
+            unvisited.discard(current)
+            visited.add(current)
+
+            # Use a heuristic function to calculate the best next move.
+            try:
+                current = self._heuristic(current) or unvisited.pop()
+            except KeyError:
+                break
+
+        path_rev = []
+        best_prev = end
+        while best_prev is not None:
+            path_rev.append(best_prev)
+            best_prev = distances[best_prev][1]
+        return reversed(path_rev)
+
+    def _heuristic(self, current):
+        """Estimate next best move considering connected nodes' weight edge."""
+        next_values = {}
+        for conn in self.g[current]:
+            next_weights = sum([weight for weight in self.g[conn].values()])
+            next_values[conn] = next_weights
+        if not next_values:
+            return None
+        return min(next_values, key=lambda k: next_values[k])
 
 
 if __name__ == "__main__":

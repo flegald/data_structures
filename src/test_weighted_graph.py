@@ -2,9 +2,6 @@
 """Test graph data structure."""
 import pytest
 
-DATA = [1, 2, 3, 4]
-
-
 NODES = ['A', 'B', 'C', 'D', 'E', 'F']
 EDGES = [
     ('A', 'B', 1),
@@ -76,6 +73,13 @@ def test_add_edge_two_existing(instance):
     instance.add_edge(*new_edge)
     assert sorted(instance.list_edges()) == sorted(EDGES + [new_edge])
     assert sorted(instance.list_nodes()) == NODES
+
+
+def test_add_edge_type(instance):
+    """Test that types other than floats and ints throw the expected error."""
+    for val in (None, "s", [1], (1,), {1: 1}):
+        with pytest.raises(TypeError):
+            instance.add_edge('A', 'B', val)
 
 
 def test_del_node(instance):
