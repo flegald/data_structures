@@ -10,13 +10,31 @@ def insertion_sort(alist):
     for i in range(1, len(alist)):
         if isinstance(alist[i], str):
             raise TypeError("List cannot include strings")
-        current_value = alist[i]
-        index = i
+    for i in range(1, len(alist)):
+        val = alist[i]
+        left_index = i - 1
+        while left_index >= 0 and alist[left_index] > val:
+            alist[left_index + 1] = alist[left_index]
+            left_index -= 1
+        alist[left_index + 1] = val
+    return alist
 
-        while index > 0 and alist[index - 1] > current_value:
-            alist[index] = alist[index - 1]
-            index = index - 1
-        alist[index] = current_value
+
+def insertion_sort_stability_proof(list_of_tuples):
+    """Implementing the same sort but with tuples to show stability."""
+    if not list_of_tuples:
+        return
+    for i in range(1, len(list_of_tuples)):
+        if isinstance(list_of_tuples[i], str):
+            raise TypeError("List cannot include strings")
+    for i in range(1, len(list_of_tuples)):
+        val = list_of_tuples[i]
+        left_index = i - 1
+        while left_index >= 0 and list_of_tuples[left_index][1] > val[1]:
+            list_of_tuples[left_index + 1] = list_of_tuples[left_index]
+            left_index -= 1
+        list_of_tuples[left_index + 1] = val
+    return list_of_tuples
 
 
 def time_it(input_list):

@@ -39,3 +39,9 @@ def test_revers_order_list():
     alist = [5, 4, 3, 2, 1]
     insertion_sort(alist)
     assert alist == [1, 2, 3, 4, 5]
+
+def test_stability():
+    """Testing stablility."""
+    from insertion_sort import insertion_sort_stability_proof
+    list_of_tuples = [('a', 1), ('b', 50), ('c', 10), ('d', 10)]
+    assert insertion_sort_stability_proof(list_of_tuples) == [('a', 1), ('c', 10), ('d', 10), ('b', 50)]
