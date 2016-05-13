@@ -39,3 +39,11 @@ def test_revers_order_list():
     alist = [5, 4, 3, 2, 1]
     merge_sort(alist)
     assert alist == [1, 2, 3, 4, 5]
+
+
+def test_stability():
+    """Testing stability."""
+    from merge_sort import merge_sort_prove_stablility
+    alist = [('a', 10), ('b', 30), ('c', 30), ('d', 20)]
+    merge_sort_prove_stablility(alist)
+    assert merge_sort_prove_stablility(alist) == [('a', 10), ('d', 20), ('b', 30), ('c', 30)]

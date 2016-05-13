@@ -2,6 +2,7 @@
 import time
 from random import randint
 
+
 def merge_sort(alist):
     """Merge sort function."""
     if not alist:
@@ -27,7 +28,10 @@ def merge_sort(alist):
             if listA[i] < listB[j]:
                 alist[k] = listA[i]
                 i += 1
-            else:
+            elif listA[i] == listB[j]:
+                alist[k] = listA[i]
+                i += 1
+            elif listA[i] > listB[j]:
                 alist[k] = listB[j]
                 j += 1
             k += 1
@@ -41,6 +45,51 @@ def merge_sort(alist):
             alist[k] = listB[j]
             j += 1
             k += 1
+
+
+def merge_sort_prove_stablility(alist):
+    """Same sort method but with tuple to show stability."""
+    if not alist:
+        return
+
+    if len(alist) > 1:
+        midpoint = len(alist) // 2
+
+        listA = alist[:midpoint]
+        listB = alist[midpoint:]
+
+        merge_sort_prove_stablility(listA)
+        merge_sort_prove_stablility(listB)
+
+        i = 0
+        j = 0
+        k = 0
+
+        while i < len(listA) and j < len(listB):
+            if isinstance(listA[i][1], str) or isinstance(listB[j][1], str):
+                raise TypeError("Inputs cannot be strings.")
+
+            if listA[i][1] < listB[j][1]:
+                alist[k] = listA[i]
+                i += 1
+            elif listA[i][1] == listB[j][1]:
+                alist[k] = listA[i]
+                i += 1
+            elif listA[i][1] > listB[j][1]:
+                alist[k] = listB[j]
+                j += 1
+            k += 1
+
+        while i < len(listA):
+            alist[k] = listA[i]
+            i += 1
+            k += 1
+
+        while j < len(listB):
+            alist[k] = listB[j]
+            j += 1
+            k += 1
+    return alist
 
 
 def time_it(input_list):
